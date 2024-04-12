@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+#dashboard {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card .card-body {
+    padding: 40px 20px;
+}
+
+.card .card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card .card-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.btn-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    z-index: 999;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+}

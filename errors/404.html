@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro 404 - Página Não Encontrada</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .error-container {
+            text-align: center;
+            margin-top: 100px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .error-code {
+            font-size: 120px;
+            color: #dc3545;
+            margin-bottom: 20px;
+            animation: shake 0.8s infinite alternate;
+        }
+        .error-message {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        .home-link {
+            margin-top: 30px;
+            animation: bounceIn 1s ease-in-out;
+        }
+        .reasons {
+            margin-top: 50px;
+        }
+        .reasons h3 {
+            font-size: 28px;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        .reasons ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .reasons ul li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-container">
+            <div class="error-code">404</div>
+            <div class="error-message">Parece que você entrou em território perigoso!</div>
+            <a href="/" class="btn btn-danger home-link"><i class="fas fa-arrow-circle-left"></i> Voltar para a Segurança</a>
+            <div class="reasons">
+                <h3>Motivos para o Erro:</h3>
+                <ul>
+                    <li><i class="fas fa-exclamation-triangle"></i> Acesso Negado</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Zona Restrita</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Perigo Iminente</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
