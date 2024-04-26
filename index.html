@@ -202,7 +202,7 @@
               setTimeout(function () { window.location.href = portfolio; }, 1500)
               return true;
             } else {
-              notify("SISTEMA", "Portfolio offline, estamos em manutenção, tente mais tarde...", 5000, 'error')
+              notify("SISTEMA", "Portfolio offline, estamos em manutenção, tente mais tarde... ("+xhr.status+")", 5000, 'error')
               return false;
             }
           }
