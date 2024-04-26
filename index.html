@@ -331,8 +331,9 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js"></script>
   <script>
     $(document).ready(function () {
-      var referer = document.referrer;
-      console.log(referer);
+      var dominio = window.location.hostname;
+      console.log("domain: "+dominio);
+
 
       var linguagemUsuario = navigator.language || navigator.userLanguage;
       if (linguagemUsuario !== 'pt-BR') {
