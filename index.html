@@ -118,6 +118,7 @@
     <h1 class="mb-4">Kauã Lima</h1>
     <p class="lead">Desenvolvedor Web Fullstack & SPI</p>
     <a href="/english.html"><button class="btn btn-primary">English</button></a>
+    <button link="http://lima.sytes.net" class="btn btn-primary btnPortfolio">Portfolio</button>
   </div>
 
   <div class="container-fluid">
@@ -126,7 +127,7 @@
         <div class="section" style="width: 90%; margin: auto;">
           <h2><i class="fa-solid fa-circle-info"></i> Informações Básicas</h2>
           <p><strong>Nome:</strong> Kauã Lima</p>
-          <p><strong>Região:</strong> Rio Grande do Sul - Brasil</p>
+          <p><strong>Região:</strong> Brasil</p>
           <p><strong>Email:</strong> devhenrike@gmail.com</p>
         </div>
       </div>
@@ -184,8 +185,6 @@
                 mas isso é só um toque de personalidade.</p>
             </div>
           </div>
-          <button id="btnPortfolio" link="http://lima.sytes.net" class="btn btn-primary">Clique aqui para ir ao
-            meu portfólio/site</button>
         </div>
       </div>
     </div>
@@ -261,7 +260,7 @@
         });
       }
 
-      $("#btnPortfolio").click(function () {
+      $(".btnPortfolio").click(function () {
         var url = $(this).attr('link');
         verificarStatusPagina(url);
       });
