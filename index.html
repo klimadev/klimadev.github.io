@@ -10,6 +10,46 @@
   <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.min.css">
   <style>
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      background-color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #888;
+      transition: background-color 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #222;
+      transition: background-color 0.3s ease;
+    }
+
+    #footer {
+      background-color: #222;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .social-icons {
+      margin-bottom: 20px;
+    }
+
+    .social-icon {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 24px;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    .social-icon:hover {
+      color: #4a90e2;
+    }
+
     body {
       background-color: #343a40;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -218,30 +258,34 @@
     </ul>
   </div>
 
-  <section id="contact">
-    <div class="container">
-        <h2>CONTATO</h2>
-        <p>Entre em contato comigo para discutir seus projetos ou ideias.</p>
-        <a href="mailto:devhenrike@gmail.com" class="btn btn-primary btn-lg"><i class="fas fa-envelope"></i> Enviar Email</a>
-    </div>
-</section>
+  <div class="jumbotron text-center mt-5">
+    <h2>CONTACT</h2>
+    <p>Contact me to discuss your projects or ideas.</p>
+    <a href="mailto:devhenrike@gmail.com" class="btn btn-primary btn-lg"><i class="fas fa-envelope"></i> Send Email</a>
+  </div>
 
-<footer id="footer">
+
+  <footer id="footer">
     <div class="container">
-        <div class="social-icons">
-            <a href="https://www.instagram.com/000_kaua000/" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:devhenrike@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Henrique3h0" class="social-icon"><i class="fab fa-github"></i></a>
-        </div>
-        <code>Made with 💟 by <a href="#">Lima</a></code>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/000_kaua000/" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/" class="social-icon"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:devhenrike@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/Henrique3h0" class="social-icon"><i class="fab fa-github"></i></a>
+      </div>
+      <code>Made with 💟 by <a href="#">Lima</a></code>
     </div>
-</footer>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js"></script>
   <script>
     $(document).ready(function () {
+      var linguagemUsuario = navigator.language || navigator.userLanguage;
+      if (linguagemUsuario !== 'pt-BR'){
+        window.open(url);
+      }
       function notify(title, text, timer = 5000, icon = 'success') {
         Swal.fire({
           title: title,

@@ -11,6 +11,45 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.min.css">
 
   <style>
+    ::-webkit-scrollbar {
+      width: 10px;
+      background-color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #888;
+      transition: background-color 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #222;
+      transition: background-color 0.3s ease;
+    }
+
+    #footer {
+      background-color: #222;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .social-icons {
+      margin-bottom: 20px;
+    }
+
+    .social-icon {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 24px;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    .social-icon:hover {
+      color: #4a90e2;
+    }
+
     body {
       background-color: #343a40;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -147,7 +186,8 @@
             <div class="card-body">
               <h5 class="card-title">LimaFlix</h5>
               <p class="card-text">A system that organizes videos like a personal and local Netflix, allowing
-                the addition of any type of video and even organizing them as a series or leaving them as a movie type.</p>
+                the addition of any type of video and even organizing them as a series or leaving them as a movie type.
+              </p>
             </div>
           </div>
           <div class="card project-card">
@@ -161,7 +201,8 @@
             <div class="card-body">
               <h5 class="card-title">LARI</h5>
               <p class="card-text">A virtual assistant that can interact with the machine, answering almost any
-                question. Sometimes it simply refuses to answer your questions because it's boring, but that's just a touch of personality.</p>
+                question. Sometimes it simply refuses to answer your questions because it's boring, but that's just a
+                touch of personality.</p>
             </div>
           </div>
         </div>
@@ -177,6 +218,7 @@
       <li> Spanish Spain (Low)</li>
     </ul>
   </div>
+
   <div class="jumbotron text-center mt-5">
     <h2><i class="fa-solid fa-code"></i> Technical Skills</h2>
     <ul class="skills-list">
@@ -197,25 +239,25 @@
     </ul>
   </div>
 
-  <section id="contact">
-    <div class="container">
-        <h2>CONTACT</h2>
-        <p>Contact me to discuss your projects or ideas.</p>
-        <a href="mailto:devhenrike@gmail.com" class="btn btn-primary btn-lg"><i class="fas fa-envelope"></i> Send Email</a>
-    </div>
-</section>
+  <div class="jumbotron text-center mt-5">
+    <h2>CONTACT</h2>
+    <p>Contact me to discuss your projects or ideas.</p>
+    <a href="mailto:devhenrike@gmail.com" class="btn btn-primary btn-lg"><i class="fas fa-envelope"></i> Send Email</a>
+  </div>
 
-<footer id="footer">
+
+  <footer id="footer">
     <div class="container">
-        <div class="social-icons">
-            <a href="https://www.instagram.com/000_kaua000/" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:devhenrike@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Henrique3h0" class="social-icon"><i class="fab fa-github"></i></a>
-        </div>
-        <code>Made with 💟 by <a href="#">Lima</a></code>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/000_kaua000/" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/" class="social-icon"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:devhenrike@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/Henrique3h0" class="social-icon"><i class="fab fa-github"></i></a>
+      </div>
+      <code>Made with 💟 by <a href="#">Lima</a></code>
     </div>
-</footer>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js"></script>
@@ -249,7 +291,7 @@
           complete: function (xhr) {
             if (xhr.status == 200) {
               notify("SISTEMA", "Portfolio online, loading...")
-              setTimeout(function (){window.open(url, "_blank");},1500)
+              setTimeout(function () { window.open(url, "_blank"); }, 1500)
               return true;
             } else {
               notify("SISTEMA", "Portfolio offline, try later...", 5000, 'error')
