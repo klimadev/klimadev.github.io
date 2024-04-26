@@ -128,6 +128,54 @@
     .card-title {
       color: #ffffff;
     }
+
+    @keyframes piscar {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(0.95);
+        box-shadow: none;
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+      }
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 15px 30px;
+      margin: 10px 10px 10px 10px;
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .piscar{
+      animation: piscar 1.5s infinite ease-in-out;
+    }
+
+    button:hover {
+      animation: none;
+      background-color: #0056b3;
+    }
+
+    button:active {
+      transform: scale(0.95);
+      box-shadow: none;
+    }
   </style>
 </head>
 
@@ -136,8 +184,9 @@
   <div class="jumbotron text-center">
     <h1 class="mb-4">Kauã Lima</h1>
     <p class="lead">Fullstack Web Systems Developer</p>
-    <a href="/index.html"><button class="btn btn-primary">Português</button></a>
-    <button link="http://lima.sytes.net" class="btn btn-primary btnPortfolio">Portfolio</button>
+    <a href="/index.html"><button class="">Português</button></a>
+    <button link="http://lima.sytes.net" class="btnPortfolio piscar">Portfolio</button>
+    <a href="#contact"><button class="">Contact</button></a>
   </div>
 
   <div class="container-fluid">
@@ -239,10 +288,10 @@
     </ul>
   </div>
 
-  <div class="jumbotron text-center mt-5">
+  <div id="contact" class="jumbotron text-center mt-5">
     <h2>CONTACT</h2>
     <p>Contact me to discuss your projects or ideas.</p>
-    <a href="mailto:devhenrike@gmail.com" class="btn btn-primary btn-lg"><i class="fas fa-envelope"></i> Send Email</a>
+    <a href="mailto:devhenrike@gmail.com"></i><button><i class="fas fa-envelope"></i> Send Email</button></a>
   </div>
 
 
