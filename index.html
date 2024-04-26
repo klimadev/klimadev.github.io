@@ -155,11 +155,13 @@
         transform: scale(1);
         box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
       }
+
       50% {
         opacity: 0.5;
         transform: scale(0.95);
         box-shadow: none;
       }
+
       100% {
         opacity: 1;
         transform: scale(1);
@@ -183,7 +185,7 @@
       overflow: hidden;
     }
 
-    .piscar{
+    .piscar {
       animation: piscar 1.5s infinite ease-in-out;
     }
 
@@ -196,7 +198,6 @@
       transform: scale(0.95);
       box-shadow: none;
     }
-
   </style>
 </head>
 
@@ -206,7 +207,7 @@
     <h1 class="mb-4">Kauã Lima</h1>
     <p class="lead">Desenvolvedor Web Fullstack & SPI</p>
     <a href="/english.html"><button class="">English</button></a>
-    <button link="http://lima.sytes.net" class="btnPortfolio piscar">Portfolio</button>
+    <button link="http://lima.sytes.net" class="piscar btnPortfolio">Portfolio</button>
     <a href="#contact"><button class="">Contato</button></a>
   </div>
 
@@ -331,9 +332,11 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js"></script>
   <script>
     $(document).ready(function () {
-      var dominio = window.location.hostname;
-      console.log("domain: "+dominio);
 
+      var dominio = window.location.hostname;
+      var referer = document.referrer;
+
+      console.log(referer)
 
       var linguagemUsuario = navigator.language || navigator.userLanguage;
       if (linguagemUsuario !== 'pt-BR') {
@@ -342,6 +345,23 @@
           window.location.href = 'english.html';
         }
       }
+
+      var url = "/url.txt";
+      var portfolio = "";
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro ao obter o arquivo');
+          }
+          return response.text();
+        })
+        .then(text => {
+          console.log(text);
+          portfolio = text
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+        });
 
       function notify(title, text, timer = 5000, icon = 'success') {
         Swal.fire({
@@ -364,9 +384,9 @@
         });
       }
 
-      function verificarStatusPagina(url) {
+      function verificarStatusPagina() {
         $.ajax({
-          url: url,
+          url: portfolio,
           type: 'GET',
           complete: function (xhr) {
             if (xhr.status == 200) {
@@ -382,8 +402,7 @@
       }
 
       $(".btnPortfolio").click(function () {
-        var url = $(this).attr('link');
-        verificarStatusPagina(url);
+        verificarStatusPagina();
       });
     });
 

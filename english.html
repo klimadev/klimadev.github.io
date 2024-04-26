@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.min.css">
-
   <style>
     ::-webkit-scrollbar {
       width: 10px;
@@ -118,6 +117,7 @@
       border-radius: 20px;
       background: linear-gradient(to left, #007bff, #7e0eda);
       color: #f8f9fa;
+      /* Texto branco */
       font-weight: bold;
     }
 
@@ -129,17 +129,39 @@
       color: #ffffff;
     }
 
+    .swal-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .swal-bg {
+      z-index: 1000;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      color: white;
+      background: #0c0c0c;
+      border-radius: 30px;
+      border: 2px solid blue;
+    }
+
+    .swal-icon {
+      left: 10px;
+    }
+
     @keyframes piscar {
       0% {
         opacity: 1;
         transform: scale(1);
         box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
       }
+
       50% {
         opacity: 0.5;
         transform: scale(0.95);
         box-shadow: none;
       }
+
       100% {
         opacity: 1;
         transform: scale(1);
@@ -163,7 +185,7 @@
       overflow: hidden;
     }
 
-    .piscar{
+    .piscar {
       animation: piscar 1.5s infinite ease-in-out;
     }
 
@@ -312,6 +334,23 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js"></script>
   <script>
     $(document).ready(function () {
+      var url = "/url.txt";
+      var portfolio = "";
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro ao obter o arquivo');
+          }
+          return response.text();
+        })
+        .then(text => {
+          console.log(text);
+          portfolio = text
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+        });
+
       function notify(title, text, timer = 5000, icon = 'success') {
         Swal.fire({
           title: title,
@@ -333,17 +372,17 @@
         });
       }
 
-      function verificarStatusPagina(url) {
+      function verificarStatusPagina() {
         $.ajax({
-          url: url,
+          url: portfolio,
           type: 'GET',
           complete: function (xhr) {
             if (xhr.status == 200) {
-              notify("SISTEMA", "Portfolio online, loading...")
+              notify("SYSTEM", "Portfolio online, loading...")
               setTimeout(function () { window.open(url, "_blank"); }, 1500)
               return true;
             } else {
-              notify("SISTEMA", "Portfolio offline, try later...", 5000, 'error')
+              notify("SYSTEM", "Portfolio offline, try later...", 5000, 'error')
               return false;
             }
           }
