@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+  <link rel="stylesheet" href="/index.css">
 
 <head>
   <meta charset="UTF-8">
@@ -379,7 +380,7 @@
           complete: function (xhr) {
             if (xhr.status == 200) {
               notify("SYSTEM", "Portfolio online, loading...")
-              setTimeout(function () { window.open(url, "_blank"); }, 1500)
+              setTimeout(function () { window.location.href = portfolio; }, 1500)
               return true;
             } else {
               notify("SYSTEM", "Portfolio offline, try later...", 5000, 'error')
