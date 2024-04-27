@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <link rel="stylesheet" href="/index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.js"
+    integrity="sha512-pmaEGtUAy7E5gRmwjLqQAD/QWw0dL4Z59b6b+2HQkqQwQ+HcPLLb9/KbUNo5zr10WuXmbivK9nYVZOyDkMgZMg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
     function notify(titulo, texto, tempo = 5000, icone = 'success') {
@@ -49,48 +52,38 @@
             console.error('Erro:', erro);
         });
 
-        function verificarStatusPagina() {
-            $.ajax({
-                url: portfolio + "/healthcheck",
-                type: 'GET',
-                statusCode: {
-                    200: function() {
-                        notify("SYSTEM", "Portfolio online, redirecting...")
-                        setTimeout(function () { window.location.href = portfolio; }, 1500)
-                    },
-                    301: function() {
-                        notify("SYSTEM", "Permanent redirect detected, redirecting...")
-                        fetch(portfolio + "/healthcheck", { mode: 'cors' })
-                            .then(response => {
-                                if (response.ok) {
-                                    return response.text();
-                                } else {
-                                    throw new Error('Error checking redirection status');
-                                }
-                            })
-                            .then(data => {
-                                if (data.trim() === "ok") {
-                                    notify("SYSTEM", "Portfolio online after redirection, redirecting...")
-                                    setTimeout(function () { window.location.href = portfolio; }, 1500)
-                                } else {
-                                    notify("SYSTEM", "Portfolio offline after redirection, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error')
-                                    setTimeout(function () { window.location.href = '/index.html'; }, 4000)
-                                }
-                            })
-                            .catch(error => {
-                                console.error("Error checking redirection status:", error);
-                            });
-                    },
-                    404: function() {
-                        notify("SYSTEM", "Portfolio offline, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error')
-                        setTimeout(function () { window.location.href = '/index.html'; }, 4000)
-                    },
-                },
-                error: function(xhr) {
-                    console.error("Error checking page status:", xhr.status);
+    function verificarStatusPagina() {
+        axios.get(portfolio + "/healthcheck")
+            .then(response => {
+                const status = response.status;
+                if (status === 200) {
+                    notify("SYSTEM", "Portfolio online, redirecting...");
+                    setTimeout(function () { window.location.href = portfolio; }, 1500);
+                } else if (status === 301) {
+                    notify("SYSTEM", "Permanent redirect detected, redirecting...");
+                    axios.get(portfolio + "/healthcheck", { mode: 'cors' })
+                        .then(response => {
+                            if (response.status === 200 && response.data.trim() === "ok") {
+                                notify("SYSTEM", "Portfolio online after redirection, redirecting...");
+                                setTimeout(function () { window.location.href = portfolio; }, 1500);
+                            } else {
+                                notify("SYSTEM", "Portfolio offline after redirection, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error');
+                                setTimeout(function () { window.location.href = '/index.html'; }, 4000);
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error checking redirection status:", error);
+                        });
+                } else if (status === 404) {
+                    notify("SYSTEM", "Portfolio offline, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error');
+                    setTimeout(function () { window.location.href = '/index.html'; }, 4000);
                 }
+            })
+            .catch(error => {
+                console.error("Error checking page status:", error.response.status);
             });
-        }
+    }
+
 
 
 </script>
