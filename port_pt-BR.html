@@ -27,7 +27,6 @@
       }
 
     var url = "/url.txt";
-    var portfolio = "https://a.a";
     fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -36,7 +35,7 @@
             return response.text();
         })
         .then(text => {
-            portfolio = text
+            var portfolio = text
         })
         .catch(error => {
             console.error('Erro:', error);
