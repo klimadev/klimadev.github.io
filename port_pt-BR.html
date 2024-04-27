@@ -52,38 +52,50 @@
         });
 
 
-    function verificarStatusPagina() {
-        axios.get(portfolio + "/healthcheck")
-            .then(response => {
-                const status = response.status;
-                console.log(status)
-                if (status === 200) {
-                    notify("SISTEMA", "Portfólio online, redirecionando...");
-                    setTimeout(function () { window.location.href = portfolio; }, 1500);
-                } else if (status === 301) {
-                    notify("SISTEMA", "Redirecionamento permanente detectado, redirecionando...");
-                    axios.get(portfolio + "/healthcheck", { mode: 'cors' })
-                        .then(response => {
-                            if (response.status === 200 && response.data.trim() === "ok") {
-                                notify("SISTEMA", "Portfólio online após redirecionamento, redirecionando...");
-                                setTimeout(function () { window.location.href = portfolio; }, 1500);
-                            } else {
-                                notify("SISTEMA", "Portfólio offline após redirecionamento, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error');
-                                setTimeout(function () { window.location.href = '/index.html'; }, 4000);
-                            }
-                        })
-                        .catch(error => {
-                            console.error("Erro ao verificar o status do redirecionamento:", error);
-                        });
-                } else if (status === 404) {
+        function verificarStatusPagina() {
+            const redirecionarParaCurriculo = () => {
+                notify("SISTEMA", "Portfólio offline, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error');
+                setTimeout(() => { window.location.href = '/index.html'; }, 4000);
+            };
+
+            const redirecionarParaPortfolio = () => {
+                notify("SISTEMA", "Portfólio online, redirecionando...");
+                setTimeout(() => { window.location.href = portfolio; }, 1500);
+            };
+
+            fetch(portfolio + "/healthcheck/index.php", { mode: "cors" })
+                .then(response => {
+                    const status = response.status;
+                    console.log(status);
+                    if (status === 200) {
+                        redirecionarParaPortfolio();
+                    } else if (status === 301) {
+                        notify("SISTEMA", "Redirecionamento permanente detectado, redirecionando...");
+                        fetch(portfolio + "/healthcheck", { mode: 'cors' })
+                            .then(response => {
+                                if (response.status === 200 && response.data.trim() === "ok") {
+                                    notify("SISTEMA", "Portfólio online após redirecionamento, redirecionando...");
+                                    redirecionarParaPortfolio();
+                                } else {
+                                    redirecionarParaCurriculo();
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Erro ao verificar o status do redirecionamento:", error);
+                                redirecionarParaCurriculo();
+                            });
+                    } else if (status === 404 || status === 502) {
+                        redirecionarParaCurriculo();
+                    }
+                })
+                .catch(error => {
                     notify("SISTEMA", "Portfólio offline, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error');
-                    setTimeout(function () { window.location.href = '/index.html'; }, 4000);
-                }
-            })
-            .catch(error => {
-                console.error("Erro ao verificar o status da página:", error.response.status);
-            });
-    }
+                    setTimeout(() => { window.location.href = '/index.html'; }, 4000);
+                    console.error("Erro ao verificar o status da página:", error);
+                });
+        }
+
+
 
 
 

@@ -53,36 +53,48 @@
         });
 
     function verificarStatusPagina() {
-        axios.get(portfolio + "/healthcheck")
+        const redirectToResume = () => {
+            notify("SYSTEM", "Portfolio is offline, we are under maintenance, please try again later... (redirecting to resume)", 5000, 'error');
+            setTimeout(() => { window.location.href = '/index.html'; }, 4000);
+        };
+
+        const redirectToPortfolio = () => {
+            notify("SYSTEM", "Portfolio is online, redirecting...");
+            setTimeout(() => { window.location.href = portfolio; }, 1500);
+        };
+
+        fetch(portfolio + "/healthcheck/index.php", { mode: "cors" })
             .then(response => {
                 const status = response.status;
+                console.log(status);
                 if (status === 200) {
-                    notify("SYSTEM", "Portfolio online, redirecting...");
-                    setTimeout(function () { window.location.href = portfolio; }, 1500);
+                    redirectToPortfolio();
                 } else if (status === 301) {
-                    notify("SYSTEM", "Permanent redirect detected, redirecting...");
-                    axios.get(portfolio + "/healthcheck", { mode: 'cors' })
+                    notify("SYSTEM", "Permanent redirection detected, redirecting...");
+                    fetch(portfolio + "/healthcheck", { mode: 'cors' })
                         .then(response => {
                             if (response.status === 200 && response.data.trim() === "ok") {
-                                notify("SYSTEM", "Portfolio online after redirection, redirecting...");
-                                setTimeout(function () { window.location.href = portfolio; }, 1500);
+                                notify("SYSTEM", "Portfolio is online after redirection, redirecting...");
+                                redirectToPortfolio();
                             } else {
-                                notify("SYSTEM", "Portfolio offline after redirection, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error');
-                                setTimeout(function () { window.location.href = '/index.html'; }, 4000);
+                                redirectToResume();
                             }
                         })
                         .catch(error => {
-                            console.error("Error checking redirection status:", error);
+                            console.error("Error while checking redirection status:", error);
+                            redirectToResume();
                         });
-                } else if (status === 404) {
-                    notify("SYSTEM", "Portfolio offline, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error');
-                    setTimeout(function () { window.location.href = '/index.html'; }, 4000);
+                } else if (status === 404 || status === 502) {
+                    redirectToResume();
                 }
             })
             .catch(error => {
-                console.error("Error checking page status:", error.response.status);
+                notify("SYSTEM", "Portfolio is offline, we are under maintenance, please try again later... (redirecting to resume)", 5000, 'error');
+                setTimeout(() => { window.location.href = '/index.html'; }, 4000);
+                console.error("Error while checking page status:", error);
             });
     }
+
 
 
 
