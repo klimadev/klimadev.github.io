@@ -51,19 +51,47 @@
 
         function verificarStatusPagina() {
             $.ajax({
-                url: portfolio+"/healthcheck",
+                url: portfolio + "/healthcheck",
                 type: 'GET',
-                complete: function (xhr) {
-                    if (xhr.status == 200 || xhr.responseText.trim() == "ok") {
-                        notify("SISTEMA", "Portfolio online, loading...")
+                statusCode: {
+                    200: function() {
+                        notify("SYSTEM", "Portfolio online, redirecting...")
                         setTimeout(function () { window.location.href = portfolio; }, 1500)
-                        return true;
-                    } else {
-                        notify("SISTEMA", "Portfolio offline, Try later...", 5000, 'error')
+                    },
+                    301: function() {
+                        notify("SYSTEM", "Permanent redirect detected, redirecting...")
+                        fetch(portfolio + "/healthcheck")
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.text();
+                                } else {
+                                    throw new Error('Error checking redirection status');
+                                }
+                            })
+                            .then(data => {
+                                if (data.trim() === "ok") {
+                                    notify("SYSTEM", "Portfolio online after redirection, redirecting...")
+                                    setTimeout(function () { window.location.href = portfolio; }, 1500)
+                                } else {
+                                    notify("SYSTEM", "Portfolio offline after redirection, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error')
+                                    setTimeout(function () { window.location.href = '/index.html'; }, 4000)
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Error checking redirection status:", error);
+                            });
+                    },
+                    404: function() {
+                        notify("SYSTEM", "Portfolio offline, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error')
                         setTimeout(function () { window.location.href = '/index.html'; }, 4000)
-                        return false;
-                    }
+                    },
+                    // Add other status codes if necessary
+                },
+                error: function(xhr) {
+                    // Handle other network errors
+                    console.error("Error checking page status:", xhr.status);
                 }
             });
         }
+
 </script>

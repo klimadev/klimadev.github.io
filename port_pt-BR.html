@@ -60,7 +60,26 @@
                     },
                     301: function() {
                         notify("SISTEMA", "Redirecionamento permanente detectado, redirecionando...")
-                        setTimeout(function () { window.location.href = portfolio; }, 1500)
+                        fetch(portfolio + "/healthcheck")
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.text();
+                                } else {
+                                    throw new Error('Erro ao verificar o status do redirecionamento');
+                                }
+                            })
+                            .then(data => {
+                                if (data.trim() === "ok") {
+                                    notify("SISTEMA", "Portfolio online após redirecionamento, redirecionando...")
+                                    setTimeout(function () { window.location.href = portfolio; }, 1500)
+                                } else {
+                                    notify("SISTEMA", "Portfolio offline após redirecionamento, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error')
+                                    setTimeout(function () { window.location.href = '/index.html'; }, 4000)
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Erro ao verificar o status do redirecionamento:", error);
+                            });
                     },
                     404: function() {
                         notify("SISTEMA", "Portfolio offline, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error')
@@ -74,5 +93,6 @@
                 }
             });
         }
+
 
 </script>
