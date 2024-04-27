@@ -18,7 +18,7 @@
     <h1 class="mb-4">Kauã Lima</h1>
     <p class="lead">Desenvolvedor Web Fullstack & SPI</p>
     <a href="/english.html"><button class="">English</button></a>
-    <button link="http://lima.sytes.net" class="piscar btnPortfolio">Portfolio</button>
+    <a href="/port.html"><button class="piscar btnPortfolio">Portfolio</button></a>
     <a href="#contact"><button class="">Contato</button></a>
   </div>
 
@@ -191,27 +191,6 @@
           width: '30rem'
         });
       }
-
-      function verificarStatusPagina() {
-        $.ajax({
-          url: portfolio,
-          type: 'GET',
-          complete: function (xhr) {
-            if (xhr.status == 200) {
-              notify("SISTEMA", "Portfolio online, encaminhando...")
-              setTimeout(function () { window.location.href = portfolio; }, 1500)
-              return true;
-            } else {
-              notify("SISTEMA", "Portfolio offline, estamos em manutenção, tente mais tarde... ("+xhr.status+")", 5000, 'error')
-              return false;
-            }
-          }
-        });
-      }
-
-      $(".btnPortfolio").click(function () {
-        verificarStatusPagina();
-      });
     });
 
 
