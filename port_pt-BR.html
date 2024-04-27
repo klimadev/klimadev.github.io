@@ -56,6 +56,7 @@
         axios.get(portfolio + "/healthcheck")
             .then(response => {
                 const status = response.status;
+                console.log(status)
                 if (status === 200) {
                     notify("SISTEMA", "Portfólio online, redirecionando...");
                     setTimeout(function () { window.location.href = portfolio; }, 1500);
