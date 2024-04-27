@@ -60,7 +60,7 @@
                     },
                     301: function() {
                         notify("SYSTEM", "Permanent redirect detected, redirecting...")
-                        fetch(portfolio + "/healthcheck")
+                        fetch(portfolio + "/healthcheck", { mode: 'cors' })
                             .then(response => {
                                 if (response.ok) {
                                     return response.text();
@@ -85,13 +85,12 @@
                         notify("SYSTEM", "Portfolio offline, we are under maintenance, try again later... (redirecting to the resume)", 5000, 'error')
                         setTimeout(function () { window.location.href = '/index.html'; }, 4000)
                     },
-                    // Add other status codes if necessary
                 },
                 error: function(xhr) {
-                    // Handle other network errors
                     console.error("Error checking page status:", xhr.status);
                 }
             });
         }
+
 
 </script>

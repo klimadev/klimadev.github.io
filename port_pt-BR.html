@@ -55,12 +55,12 @@
                 type: 'GET',
                 statusCode: {
                     200: function() {
-                        notify("SISTEMA", "Portfolio online, redirecionando...")
+                        notify("SISTEMA", "Portfólio online, redirecionando...")
                         setTimeout(function () { window.location.href = portfolio; }, 1500)
                     },
                     301: function() {
                         notify("SISTEMA", "Redirecionamento permanente detectado, redirecionando...")
-                        fetch(portfolio + "/healthcheck")
+                        fetch(portfolio + "/healthcheck", { mode: 'cors' })
                             .then(response => {
                                 if (response.ok) {
                                     return response.text();
@@ -70,10 +70,10 @@
                             })
                             .then(data => {
                                 if (data.trim() === "ok") {
-                                    notify("SISTEMA", "Portfolio online após redirecionamento, redirecionando...")
+                                    notify("SISTEMA", "Portfólio online após redirecionamento, redirecionando...")
                                     setTimeout(function () { window.location.href = portfolio; }, 1500)
                                 } else {
-                                    notify("SISTEMA", "Portfolio offline após redirecionamento, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error')
+                                    notify("SISTEMA", "Portfólio offline após redirecionamento, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error')
                                     setTimeout(function () { window.location.href = '/index.html'; }, 4000)
                                 }
                             })
@@ -82,17 +82,16 @@
                             });
                     },
                     404: function() {
-                        notify("SISTEMA", "Portfolio offline, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error')
+                        notify("SISTEMA", "Portfólio offline, estamos em manutenção, tente mais tarde... (redirecionando para o currículo)", 5000, 'error')
                         setTimeout(function () { window.location.href = '/index.html'; }, 4000)
                     },
-                    // Adicione outros códigos de status, se necessário
                 },
                 error: function(xhr) {
-                    // Lidar com outros erros de rede
                     console.error("Erro ao verificar o status da página:", xhr.status);
                 }
             });
         }
+
 
 
 </script>
