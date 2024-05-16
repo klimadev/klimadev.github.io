@@ -1,0 +1,307 @@
+@font-face {
+    font-family: Pixel;
+    src: url(assets/pixel.ttf);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222;
+    transition: background-color 0.3s ease;
+}
+
+body {
+    background-color: #010C22;
+    font-size: 1rem;
+}
+
+.card {
+    opacity: 0;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    animation: fadeIn 0.6s ease forwards, borderAnimation 2s infinite alternate;
+}
+
+.card i {
+    color: #fff;
+}
+h1,
+h5 {
+    font-family: Pixel;
+
+}
+
+@keyframes borderAnimation {
+    0% {
+        border: 2px solid #55D0D7;
+    }
+
+    100% {
+        border: 2px solid #a355d7;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card:hover,
+.card:active {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 20px;
+    z-index: -1;
+}
+
+.card:hover:after,
+.card:active:after {
+    background: linear-gradient(135deg, #2b2c2c, #800080);
+    opacity: 0.5;
+}
+
+.card-body {
+    transition: all 0.5s ease;
+    z-index: 1;
+    padding: 2rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-text {
+    font-size: 1.2rem;
+    color: #f5f5f5;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary,
+.btn-delete {
+    background-color: transparent;
+    font-weight: bold;
+    color: #ffffff;
+    border: solid 2px #55D0D7;
+    border-radius: 100px;
+    padding: 10px 20px;
+    margin: 0.5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-delete:hover,
+.cart-btn:hover {
+    animation: piscar 0.3s alternate;
+    border: none;
+    border-radius: 4px;
+    background-color: #55D0D7;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.indicator.online {
+    background-color: green;
+}
+
+.indicator.offline {
+    background-color: red;
+}
+
+.faq-container {
+    margin-top: 50px;
+}
+
+.faq-container h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.accordion-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.accordion-button {
+    color: #fff !important;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgba(41, 37, 37, 0.3);
+}
+
+.accordion-button::after {
+    color: #fff;
+    filter: invert(100%) sepia(100%) saturate(10000%) hue-rotate(180deg);
+}
+
+.accordion-body {
+    background-color: rgba(255, 12, 12, 0.3);
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #2b2c2c, #800080);
+    transition: all 0.5s ease;
+}
+
+.carousel {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border-radius: 20px;
+}
+.slick-dots li.slick-active button:before {
+    color: #fff;
+}
+
+.slick-dots li button:before {
+    color: #55D0D7;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpaperaccess.com/full/314785.jpg') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content {
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeInHero 1s ease-in-out;
+}
+
+.services {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.service {
+    flex-basis: calc(33.33% - 20px);
+    margin: 10px;
+    text-align: center;
+}
+
+.service i {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.service p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+
+
+
+.hero-section h1 {
+    font-family: Pixel;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+@keyframes fadeInHero {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.zoomable-image {
+    cursor: zoom-in;
+}
+.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
