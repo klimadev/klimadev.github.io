@@ -105,11 +105,11 @@ let promise = document.documentElement.requestFullscreen();
                         if (cardTitle == "Loja") {
                             $(this).closest('.card-body').find('.btn').attr('href', portfolio + "/shop.php");
                         }
-                        $(this).closest('.card-body').fadeIn();
+                        $(this).closest('.col-md-4').fadeIn();
                     } else {
                         $(this).text('Offline').removeClass('online').addClass('offline').fadeIn();
                         $(this).closest('.card-body').find('.btn').fadeOut();
-                        $(this).closest('.card-body').fadeOut();
+                        $(this).closest('.col-md-4').fadeOut();
                         items[cardTitle] = "offline";
                     }
                 }
