@@ -43,8 +43,8 @@
 <body>
     <section class="hero-section">
         <div class="hero-content">
-            <h1>Bem-vindo ao LIMA HUB</h1>
-            <h5 class="text-white text-center">Experiencia em</h5>
+            <h1>LIMA HUB</h1>
+            <!--<h5 class="text-white text-center">FAZEMOS</h5>-->
             <div class="services">
                 <div class="service">
                     <i class="fas fa-code"></i>
@@ -68,18 +68,20 @@
                 </div>
             </div>
             <div class="actions">
-                <!-- <a href="#projetos" class="btn btn-primary">Projetos</a> -->
+                <a href="#projetos" class="btn btn-primary">Projetos</a>
                 <a href="#contato" class="btn btn-primary">Orçamento</a>
                 <a href="#contato" class="btn btn-primary">Tirar Duvidas</a>
             </div>
+            <i class="fas fa-question-circle question-icon"
+                help="Esses botões servem para facilitar sua navegação, use-os para ir direto a uma área especifica."
+                onclick="help_toast(this)"></i>
         </div>
     </section>
 
     <div class="container py-5">
 
 
-        <section class="carousel-section m-2" id="projetos">
-            <h2 class="text-center text-white my-5">PROJETOS RECENTES (offline para testes)</h2>
+        <section class="carousel-section m-2">
             <!--<h2 class="text-center text-white my-2">LANDING PAGES</h2>
             <div class="carousel">
                 <div><img src="https://via.placeholder.com/800x400" alt="Imagem 1"></div>
@@ -112,7 +114,7 @@
             </div>-->
         </section>
 
-        <h1 class="text-center text-white my-5">LIMA HUB</h1>
+        <!-- <h1 class="text-center text-white my-5">LIMA HUB</h1>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card h-100" id="loja">
@@ -189,146 +191,209 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <section class="contact-section py-5" id="contato">
-        <div class="container">
-            <h1 class="text-center text-white mb-4">Tire Dúvidas</h1>
-            <div class="row justify-content-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-envelope fa-4x mb-4"></i>
-                            <h5 class="card-title">Email</h5>
-                            <p class="card-text">Entre em contato através do email:</p>
-                            <a href="mailto:seuemail@gmail.com" class="btn btn-primary">Enviar Email</a>
+        <section class="contact-section py-5" id="contato">
+            <div class="container">
+                <h1 class="text-center text-white mb-4">Contato <i class="fas fa-question-circle question-icon"
+                        help="Aqui são algumas das nossas formas de contato, pra você tirar duvidas sobre seu projeto personalizado🧑‍💻"
+                        onclick="help_toast(this)"></i></h1>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-envelope fa-4x mb-4"></i>
+                                <h5 class="card-title">Email</h5>
+                                <p class="card-text">Entre em contato através do email:</p>
+                                <a href="mailto:devhenrike+limawebvision@gmail.com" class="btn btn-primary">Enviar Email</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fab fa-instagram fa-4x mb-4"></i>
+                                <h5 class="card-title">Instagram</h5>
+                                <p class="card-text">Conecte-se comigo no Instagram:</p>
+                                <a href="https://www.instagram.com/lima_webvision/" class="btn btn-primary">Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fab fa-linkedin fa-4x mb-4"></i>
+                                <h5 class="card-title">LinkedIn</h5>
+                                <p class="card-text">Conecte-se comigo no LinkedIn:</p>
+                                <a href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/"
+                                    class="btn btn-primary">LinkedIn</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fab fa-instagram fa-4x mb-4"></i>
-                            <h5 class="card-title">Instagram</h5>
-                            <p class="card-text">Conecte-se conosco no Instagram:</p>
-                            <a href="https://www.instagram.com/seuusuario/" class="btn btn-primary">Instagram</a>
+            </div>
+        </section>
+
+        <section>
+            <h1 class="text-center text-white mb-4">Projetos <i class="fas fa-question-circle question-icon"
+                    help="Aqui é onde ficam alguns de meus projetos recentes, que tal colocar o seu aqui também😉"
+                    onclick="help_toast(this)"></i></h1>
+                    <p class="text-white text-center">Clique na imagem para expandi-la</p>
+            <div class="container mt-5" id="projetos">
+                <div class="slider">
+                    <div class="slide">
+                        <h2 class="title text-white text-center">Landing Page (advocacia)</h2>
+                        <div class="thumbnails">
+                            <div class="thumbnail"><img class="active" src="./assets/projetos/advocacia/1.png"
+                                    data-main="./assets/projetos/advocacia/1.png" alt="Thumbnail 1"></div>
+                            <div class="thumbnail"><img src="./assets/projetos/advocacia/2.png"
+                                    data-main="./assets/projetos/advocacia/2.png" alt="Thumbnail 2"></div>
+                            <div class="thumbnail"><img src="./assets/projetos/advocacia/3.png"
+                                    data-main="./assets/projetos/advocacia/3.png" alt="Thumbnail 3"></div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <h2 class="title text-white text-center">LimaFlix</h2>
+
+                        <div class="thumbnails">
+                            <div class="thumbnail"><img class="active" src="./assets/projetos/limaflix/1.png"
+                                    data-main="./assets/projetos/limaflix/1.png" alt="Thumbnail 1"></div>
+                            <div class="thumbnail"><img src="./assets/projetos/limaflix/2.png"
+                                    data-main="./assets/projetos/limaflix/2.png" alt="Thumbnail 2"></div>
+                            <div class="thumbnail"><img src="./assets/projetos/limaflix/3.png"
+                                    data-main="./assets/projetos/limaflix/3.png" alt="Thumbnail 3"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fab fa-linkedin fa-4x mb-4"></i>
-                            <h5 class="card-title">LinkedIn</h5>
-                            <p class="card-text">Conecte-se conosco no LinkedIn:</p>
-                            <a href="https://www.linkedin.com/in/seuperfil/" class="btn btn-primary">LinkedIn</a>
+
+            </div>
+        </section>
+
+        <section>
+            <div class="container py-5">
+                <h1 class="text-center text-white mb-4">FAQ <i class="fas fa-question-circle question-icon"
+                        help="FAQ, são perguntas comuns que recebo, então já deixo elas respondidas aqui, caso ainda tenha dúvidas é só entrar em contato, estamos lhe esperando"
+                        onclick="help_toast(this)"></i></h1>
+                <div class="accordion" id="faqAccordion">
+                    <!-- Contato -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                1. Como posso entrar em contato com você?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Você pode entrar em contato enviando um e-mail para <a
+                                    href="mailto:devhenrike@gmail.com" rel="noopener noreferrer"
+                                    target="_blank">devhenrike@gmail.com</a> ou conectando-se através do LinkedIn em <a
+                                    href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/" rel="noopener noreferrer"
+                                    target="_blank">Kauã Lima</a>. Vamos agendar uma conversa para entender melhor suas necessidades e criar algo incrível juntos!
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Valores -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                2. Qual é o custo para desenvolver uma landing page?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                O custo de uma landing page depende de vários fatores, como a complexidade e as funcionalidades desejadas. Para oferecer uma solução personalizada que atenda exatamente às suas expectativas, o ideal é agendarmos uma reunião. Assim, poderei fornecer um orçamento detalhado e ajustado às suas necessidades.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Processo de Desenvolvimento -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                3. Como é o processo de desenvolvimento de uma landing page?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                O processo de desenvolvimento é uma jornada colaborativa para garantir que sua landing page seja perfeita. Geralmente, segue estas etapas:
+                                <ol>
+                                    <li><strong>Consulta Inicial:</strong> Discutimos suas necessidades e objetivos.</li>
+                                    <li><strong>Planejamento:</strong> Definimos o escopo do projeto e criamos um cronograma.</li>
+                                    <li><strong>Design:</strong> Criação de um design visual atrativo e funcional.</li>
+                                    <li><strong>Desenvolvimento:</strong> Codificação da landing page conforme o design aprovado.</li>
+                                    <li><strong>Revisões:</strong> Ajustes baseados no seu feedback.</li>
+                                    <li><strong>Lançamento:</strong> Publicação da landing page e entrega final.</li>
+                                </ol>
+                                Vamos agendar uma reunião para que eu possa entender melhor suas ideias e transformar sua visão em realidade.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Domínio e Hospedagem -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                4. Você fornece domínio e hospedagem?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sim, posso ajudá-lo na configuração de domínio e hospedagem para sua landing page. Embora esses serviços sejam cobrados à parte, estarei ao seu lado durante todo o processo para garantir que tudo funcione perfeitamente. Vamos marcar uma conversa para definir os detalhes e deixar sua página pronta para impressionar!
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tempo de Desenvolvimento -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                5. Em quanto tempo minha landing page ficará pronta?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                O desenvolvimento de uma landing page geralmente leva até uma semana. Vamos agendar uma reunião para discutir suas necessidades e garantir que sua página esteja pronta no prazo desejado, superando suas expectativas.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-    <div class="container py-5">
-        <h1 class="text-center text-white mb-4">FAQ</h1>
-        <div class="accordion" id="faqAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        1. Como posso entrar em contato com você?
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                    data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Você pode entrar em contato enviando um e-mail para <a href="mailto:devhenrike@gmail.com"
-                            rel="noopener noreferrer" target="_blank">devhenrike@gmail.com</a> ou conectando-se através
-                        do LinkedIn em <a href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/"
-                            rel="noopener noreferrer" target="_blank">Kauã Lima</a>.
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        2. Onde posso encontrar seus projetos?
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                    data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Você pode explorar meus projetos tanto no GitHub quanto em meu portfólio. Visite meu GitHub em
-                        <a href="https://github.com/Henrique3h0" target="_blank"
-                            rel="noopener noreferrer">Henrique3h0</a> e meu portfólio em <a href="#portfolio"
-                            target="_blank" rel="noopener noreferrer">LIMA HUB</a>.
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        3. Sua loja online está disponível?
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                    data-bs-parent="#faqAccordion">
-                    <!--<div class="accordion-body">
-                        Sim, você pode visitar nossa loja online para explorar nossa variedade de produtos em <a
-                            href="#loja" target="_blank" rel="noopener noreferrer">LIMA SHOP</a>.
-                    </div>-->
-                    <div class="accordion-body">
-                        Atualmente Offline para atualizações.
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        4. Como faço para saber se você está disponível online?
-                    </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                    data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Verifique os indicadores de status em cada seção. Eles indicarão se estou online ou offline.
-                        Além
-                        disso, você pode observar as notificações na página para atualizações de status.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+            integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
-        integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"
+            integrity="sha512-ZHzbWDQKpcZxIT9l5KhcnwQTidZFzwK/c7gpUUsFvGjEsxPusdUCyFxjjpc7e/Wj7vLhfMujNx7COwOmzbn+2w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"
-        integrity="sha512-ZHzbWDQKpcZxIT9l5KhcnwQTidZFzwK/c7gpUUsFvGjEsxPusdUCyFxjjpc7e/Wj7vLhfMujNx7COwOmzbn+2w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
+            integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
-        integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.0/sweetalert2.min.js"
-        integrity="sha512-Wi5Ms24b10EBwWI9JxF03xaAXdwg9nF51qFUDND/Vhibyqbelri3QqLL+cXCgNYGEgokr+GA2zaoYaypaSDHLg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.0/sweetalert2.min.js"
+            integrity="sha512-Wi5Ms24b10EBwWI9JxF03xaAXdwg9nF51qFUDND/Vhibyqbelri3QqLL+cXCgNYGEgokr+GA2zaoYaypaSDHLg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.panzoom/3.2.3/jquery.panzoom.min.js"></script>
 
-    <script src="script.js">
-    </script>
+        <script src="script.js">
+        </script>
 </body>
 
 </html>

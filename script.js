@@ -11,14 +11,38 @@ let promise = document.documentElement.requestFullscreen();
         });
 
 
-        showToast("Verificando Status...")
-        $(document).on('click', '.swal2-image', function() {
-            $(this).toggleClass('zoomed');
+        showToast("Bem vindo")
+        $(document).on('click', '.swal2-image', function(event) {
+            const img = $(this);
+            const offset = img.offset();
+            const clickX = event.pageX - offset.left;
+            const clickY = event.pageY - offset.top;
+
+            if (img.hasClass('zoomed2')) {
+                // Remove o zoom
+                img.css({
+                    'transform': '',
+                    'transform-origin': ''
+                });
+                img.removeClass('zoomed2');
+            } else {
+                // Aplica o zoom
+                const scale = 2;
+                const originX = (clickX / img.width()) * 100;
+                const originY = (clickY / img.height()) * 100;
+
+                img.css({
+                    'transform': `scale(${scale})`,
+                    'transform-origin': `${originX}% ${originY}%`
+                });
+                img.addClass('zoomed2');
+            }
         });
+
 
         $(document).ready(function () {
 
-            $('.carousel img').click(function() {
+            $('.main-image-container img').on("click",function() {
                 Swal.fire({
                     imageUrl: $(this).attr('src'),
                     imageAlt: $(this).attr('alt'),
@@ -48,7 +72,10 @@ let promise = document.documentElement.requestFullscreen();
                     }, 3000);
                 }
             }
-            setInterval(function () {
+
+            //SERVICES CHECK
+
+            /*setInterval(function () {
                 fetch(url)
                     .then(response => {
                         if (response.status === 301) {
@@ -84,7 +111,8 @@ let promise = document.documentElement.requestFullscreen();
                         isOnline = false;
                         updateIndicators();
                     });
-            }, 5000);
+            }, 5000);*/
+
         });
 
         function updateIndicators() {
@@ -160,6 +188,11 @@ let promise = document.documentElement.requestFullscreen();
 
         }
 
+        function help_toast(data){
+            var help_text = data.getAttribute('help');
+            showToast(help_text, "", 10000);
+        }
+
         function reproduzirSom(url) {
             let audio = new Audio(url);
             audio.play();
@@ -200,37 +233,36 @@ let promise = document.documentElement.requestFullscreen();
 
         observarMudancas(items);
 
-        $('.carousel').slick({
+        $('.slider').slick({
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 300,
             slidesToShow: 1,
             slidesToScroll: 1,
-            centerMode: true,
-            autoplay: true,
-            autoplaySpeed: 1500,
-            dots: false,
-            arrows: false,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1,
-                        centerMode: false,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        centerMode: false,
-                        dots: true
-                    }
-                }
-            ]
-        });
+            adaptiveHeight: true
+          });
 
+          // Clique nas miniaturas para mudar a imagem principal
+          $('.thumbnail img').on('click', function() {
+            var mainImage = $(this).closest('.slide').find('.main-image');
+            var newSrc = $(this).data('main');
+            mainImage.attr('src', newSrc);
+
+            // Atualizar a classe ativa
+            $(this).closest('.thumbnails').find('img').removeClass('active');
+            $(this).addClass('active');
+          });
+
+          $('.thumbnail img').on("click",function() {
+            Swal.fire({
+                imageUrl: $(this).attr('src'),
+                imageAlt: $(this).attr('alt'),
+                imageWidth: '100%',
+                imageHeight: '100%',
+                footer: false,
+                imageClassList: ['zoomable-image'],
+                showConfirmButton: false,
+                allowOutsideClick: true
+            });
+        });
