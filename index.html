@@ -1,399 +1,1145 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="programador, desenvolvedor, portfólio, contato, habilidades, tecnologias">
-    <meta name="author" content="Kauã Lima">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="LIMA HUB">
-    <meta property="og:description"
-        content="Sou Kauã Lima, Descubra minhas habilidades técnicas e interpessoais e como podemos colaborar em seus projetos.">
-    <title>LIMA HUB</title>
+    <title>LIMA HUB - Em Construção</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { 
+            background: linear-gradient(130deg, #0f0f23 0%, #1a1a3a 35%, #2a2a5a 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Modern animations */
+        .magnetic { transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1); }
+        .magnetic:hover { transform: scale(1.05); }
+        
+        .glow {
+            position: relative;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #3b82f6);
+            border-radius: 24px;
+            padding: 1px;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .glow:hover::before { opacity: 1; }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 1;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .service-card:hover::before { left: 100%; }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.15);
+        }
+        
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
-        integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css"
-        integrity="sha512-k+xZuzf4IaGQK9sSDjaNyrfwgxBfoF++7u6Q0ZVUs2rDczx9doNZkYXyyQbnJQcMR4o+IjvAcIj69hHxiOZEig=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
-        integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"
-        integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.0/sweetalert2.min.css"
-        integrity="sha512-OWGg8FcHstyYFwtjfkiCoYHW2hG3PDWwdtczPAPUcETobBJOVCouKig8rqED0NMLcT9GtE4jw6IT1CSrwY87uw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="global.css">
+        
+        .service-details {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .service-card.expanded .service-details {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 300px;
+            padding: 20px 0 0 0;
+        }
+        
+        .modal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-container.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+        
+        .modal-card {
+            position: relative;
+            z-index: 1001;
+            max-width: min(95vw, 900px);
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            backdrop-filter: blur(25px);
+            border-radius: 28px;
+            padding: clamp(20px, 4vw, 40px);
+            box-shadow: 
+                0 60px 120px -20px rgba(0, 0, 0, 0.6),
+                0 25px 50px -12px rgba(59, 130, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: scale(0.8) translateY(30px) rotateX(10deg);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Scrollbar customizada para o modal */
+        .modal-card::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-card::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .modal-card::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.6));
+            border-radius: 10px;
+        }
+        
+        .modal-card::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.8));
+        }
+        
+        .modal-container.active .modal-card {
+            transform: scale(1) translateY(0) rotateX(0deg);
+        }
+        
+        .modal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 28px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-card:hover::before {
+            opacity: 1;
+        }
+        
+        .modal-service-icon {
+            width: clamp(80px, 14vw, 120px);
+            height: clamp(80px, 14vw, 120px);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(32px, 7vw, 48px);
+            color: #3b82f6;
+            margin: 0 auto clamp(24px, 6vw, 40px);
+            position: relative;
+            overflow: hidden;
+            animation: float-icon 4s ease-in-out infinite;
+        }
+        
+        .modal-service-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+            animation: rotate-border 3s linear infinite;
+        }
+        
+        .modal-service-icon i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(1deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-3px) rotate(-1deg); }
+        }
+        
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .modal-service-title {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            margin-bottom: clamp(16px, 4vw, 28px);
+            background: linear-gradient(135deg, #ffffff, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .modal-service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: clamp(20px, 4vw, 32px);
+            margin-top: clamp(32px, 6vw, 48px);
+        }
+        
+        @media (min-width: 768px) {
+            .modal-service-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .modal-service-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
+        .modal-service-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 32px);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .modal-service-item:hover::before {
+            left: 100%;
+        }
+        
+        .modal-service-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.2);
+        }
+        
+        .modal-service-item i {
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+        }
+        
+        .modal-service-item h4 {
+            font-size: clamp(14px, 3vw, 18px);
+            font-weight: 600;
+            margin-bottom: clamp(6px, 2vw, 10px);
+            color: white;
+            line-height: 1.3;
+        }
+        
+        .modal-service-item p {
+            font-size: clamp(12px, 2.5vw, 14px);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-card.expanded {
+            display: none !important;
+        }
+        
+        .click-indicator {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .click-indicator::before {
+            content: '+';
+            color: #3b82f6;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .click-indicator {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .service-card.expanded .click-indicator::before {
+            transform: rotate(45deg);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px) rotateX(0deg);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .whatsapp-btn:hover::before { left: 100%; }
+        
+        .whatsapp-btn:hover {
+            transform: perspective(1000px) rotateX(-10deg) translateY(-3px);
+            box-shadow: 0 20px 40px -10px rgba(37, 211, 102, 0.3);
+        }
+        
+        .pulse-dot {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
+            50% { opacity: 0.7; box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(-5px) rotate(-1deg); }
+        }
+        
+        .text-shimmer {
+            background: linear-gradient(90deg, #fff 25%, #3b82f6 50%, #fff 75%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+        
+        /* Particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: particle-float 8s linear infinite;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
-
-<body>
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>LIMA HUB</h1>
-            <!--<h5 class="text-white text-center">FAZEMOS</h5>-->
-            <div class="services">
-                <div class="service">
-                    <i class="fas fa-code"></i>
-                    <p>Scripts</p>
-                </div>
-                <div class="service">
-                    <i class="fas fa-laptop-code"></i>
-                    <p>Landing Pages</p>
-                </div>
-                <div class="service">
-                    <i class="fas fa-globe"></i>
-                    <p>Websites</p>
-                </div>
-                <div class="service">
-                    <i class="fas fa-cogs"></i>
-                    <p>Automações</p>
-                </div>
-                <div class="service">
-                    <i class="fas fa-robot"></i>
-                    <p>Bots</p>
-                </div>
-            </div>
-            <div class="actions">
-                <a href="#projetos" class="btn btn-primary">Projetos</a>
-                <a href="#contato" class="btn btn-primary">Orçamento</a>
-                <a href="#contato" class="btn btn-primary">Tirar Duvidas</a>
-            </div>
-            <i class="fas fa-question-circle question-icon"
-                help="Esses botões servem para facilitar sua navegação, use-os para ir direto a uma área especifica."
-                onclick="help_toast(this)"></i>
+<body class="min-h-screen flex items-center justify-center px-4 lg:px-8 text-white relative">
+    <canvas id="backgroundCanvas" class="fixed inset-0 z-0"></canvas>
+    <div class="glow p-8 md:p-16 lg:p-20 xl:p-24 w-full text-center relative z-10">
+        <!-- Logo/Título -->
+        <div class="mb-16 lg:mb-20 floating">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 text-shimmer">
+                LIMA HUB
+            </h1>
+            <p class="text-xl text-gray-300 font-medium tracking-wide">Lima Web Vision</p>
         </div>
-    </section>
 
-    <div class="container py-5">
-
-
-        <section class="carousel-section m-2">
-            <!--<h2 class="text-center text-white my-2">LANDING PAGES</h2>
-            <div class="carousel">
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 1"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 2"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 3"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 1"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 2"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 3"></div>
-
+        <!-- Status -->
+        <div class="mb-20 lg:mb-24">
+            <div class="inline-flex items-center space-x-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-6 py-3 rounded-full border border-green-400/30 mb-8">
+                <div class="w-4 h-4 bg-green-400 rounded-full pulse-dot"></div>
+                <span class="text-green-100 font-semibold tracking-wide">Em Construção</span>
             </div>
-            <h2 class="text-center text-white my-2">SCRIPTS</h2>
-            <div class="carousel">
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 1"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 2"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 3"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 1"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 2"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 3"></div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                Preparando algo extraordinário!
+            </h2>
+            <p class="text-gray-300 text-xl leading-relaxed max-w-3xl mx-auto">
+                Nossa plataforma está sendo desenvolvida com tecnologias de ponta para entregar 
+                soluções digitais que transformam negócios.
+            </p>
+        </div>
 
-            </div>
-            <h2 class="text-center text-white my-2">AUTOMAÇÕES</h2>
-            <div class="carousel">
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 1"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 2"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 3"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 1"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 2"></div>
-                <div><img src="https://via.placeholder.com/800x400" alt="Imagem 3"></div>
-
-            </div>-->
-        </section>
-
-        <!-- <h1 class="text-center text-white my-5">LIMA HUB</h1>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100" id="loja">
-                    <div class="card-body text-center">
-                        <i class="fas fa-store fa-4x mb-4"></i>
-                        <h5 class="card-title">Loja</h5>
-                        <p class="card-text">Explore nossa variedade de produtos.</p>
-                        <a target="_blank" rel="noopener noreferrer" href="#" class="btn btn-primary"
-                            id="btn-loja">Visitar</a>
-                        <div class="indicator offline">Offline</div>
+        <!-- Serviços -->
+        <div class="mb-20 lg:mb-24">
+            <h3 class="text-2xl font-bold mb-12 lg:mb-16 text-gray-200">Nossos Serviços</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <!-- Landing Pages -->
+                <div class="service-card rounded-2xl p-6 cursor-pointer magnetic" data-service="landing">
+                    <div class="click-indicator"></div>
+                    <div class="text-4xl mb-4"><i class="ph ph-rocket text-blue-400"></i></div>
+                    <h4 class="text-lg font-semibold mb-2">Landing Pages</h4>
+                    <div class="service-details" data-service-type="landing">
+                        <div class="modal-service-grid">
+                            <div class="modal-service-item">
+                                <i class="ph ph-chart-line-up"></i>
+                                <h4>Vendas & Conversão</h4>
+                                <p>Landing pages otimizadas para converter visitantes em clientes</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-user-plus"></i>
+                                <h4>Captação de Leads</h4>
+                                <p>Formulários inteligentes para capturar leads qualificados</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-calendar-plus"></i>
+                                <h4>Eventos & Lançamentos</h4>
+                                <p>Páginas especiais para eventos e lançamentos de produtos</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-briefcase"></i>
+                                <h4>Portfólios Profissionais</h4>
+                                <p>Showcases elegantes para destacar seu trabalho</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-address-book fa-4x mb-4"></i>
-                        <h5 class="card-title">Contato</h5>
-                        <p class="card-text">Entre em contato conosco para qualquer dúvida ou contratação.</p>
-                        <a target="_blank" rel="noopener noreferrer"
-                            href="mailto:devhenrike@gmail.com?subject=Contato%20para%20Serviços%20de%20Programação"
-                            class="btn btn-primary" id="btn-contato">Entrar em contato</a>
-                        <div class="indicator online">Online</div>
+                
+                <!-- Sistemas -->
+                <div class="service-card rounded-2xl p-6 cursor-pointer magnetic" data-service="sistemas">
+                    <div class="click-indicator"></div>
+                    <div class="text-4xl mb-4"><i class="ph ph-gear text-purple-400"></i></div>
+                    <h4 class="text-lg font-semibold mb-2">Sistemas</h4>
+                    <div class="service-details" data-service-type="sistemas">
+                        <div class="modal-service-grid">
+                            <div class="modal-service-item">
+                                <i class="ph ph-buildings"></i>
+                                <h4>ERP Personalizado</h4>
+                                <p>Sistemas completos de gestão empresarial sob medida</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-chart-line-up"></i>
+                                <h4>CRM de Vendas</h4>
+                                <p>Gerencie relacionamentos e vendas de forma eficiente</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-package"></i>
+                                <h4>Gestão de Estoque</h4>
+                                <p>Controle inteligente de inventário e produtos</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-chart-bar"></i>
+                                <h4>Dashboards BI</h4>
+                                <p>Visualizações inteligentes para tomada de decisões</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100" id="portfolio">
-                    <div class="card-body text-center">
-                        <i class="fas fa-folder-open fa-4x mb-4"></i>
-                        <h5 class="card-title">Portfólio</h5>
-                        <p class="card-text">Aqui pode ver meus projetos e site</p>
-                        <a target="_blank" rel="noopener noreferrer" href="#" class="btn btn-primary"
-                            id="btn-portfolio">Acessar</a>
-                        <div class="indicator offline">Offline</div>
+                
+                <!-- Aplicações -->
+                <div class="service-card rounded-2xl p-6 cursor-pointer magnetic" data-service="apps">
+                    <div class="click-indicator"></div>
+                    <div class="text-4xl mb-4"><i class="ph ph-device-mobile text-green-400"></i></div>
+                    <h4 class="text-lg font-semibold mb-2">Aplicações</h4>
+                    <div class="service-details" data-service-type="apps">
+                        <div class="modal-service-grid">
+                            <div class="modal-service-item">
+                                <i class="ph ph-device-mobile"></i>
+                                <h4>Apps Mobile</h4>
+                                <p>Aplicativos nativos para iOS e Android</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-browser"></i>
+                                <h4>Web Apps (PWA)</h4>
+                                <p>Aplicações web progressivas modernas</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-desktop"></i>
+                                <h4>Apps Desktop</h4>
+                                <p>Aplicações nativas para Windows e Mac</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-shopping-cart"></i>
+                                <h4>E-commerce</h4>
+                                <p>Plataformas completas de venda online</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fab fa-github fa-4x mb-4"></i>
-                        <h5 class="card-title">Github</h5>
-                        <p class="card-text">Outra forma de ver meus projetos</p>
-                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Henrique3h0"
-                            class="btn btn-primary" id="btn-contato">Entrar</a>
-                        <div class="indicator online">Online</div>
+                
+                <!-- Automações -->
+                <div class="service-card rounded-2xl p-6 cursor-pointer magnetic" data-service="automacao">
+                    <div class="click-indicator"></div>
+                    <div class="text-4xl mb-4"><i class="ph ph-robot text-orange-400"></i></div>
+                    <h4 class="text-lg font-semibold mb-2">Automações</h4>
+                    <div class="service-details" data-service-type="automacao">
+                        <div class="modal-service-grid">
+                            <div class="modal-service-item">
+                                <i class="ph ph-whatsapp-logo"></i>
+                                <h4>WhatsApp Business</h4>
+                                <p>Automação completa para atendimento e vendas</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-envelope-simple"></i>
+                                <h4>Email Marketing</h4>
+                                <p>Campanhas automatizadas e segmentadas</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-share-network"></i>
+                                <h4>Social Media</h4>
+                                <p>Automação de postagens e engajamento</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-gear-six"></i>
+                                <h4>Processos Internos</h4>
+                                <p>Otimização de fluxos de trabalho empresariais</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fab fa-linkedin fa-4x mb-4"></i>
-                        <h5 class="card-title">Linkedin</h5>
-                        <p class="card-text">Conecte-se comigo</p>
-                        <a target="_blank" rel="noopener noreferrer"
-                            href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/" class="btn btn-primary"
-                            id="btn-contato">Conectar-se</a>
-                        <div class="indicator online">Online</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fab fa-instagram fa-4x mb-4"></i>
-                        <h5 class="card-title">Instagram</h5>
-                        <p class="card-text">Seja mais proximo</p>
-                        <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/000_kaua000/"
-                            class="btn btn-primary" id="btn-contato">Ver Mais</a>
-                        <div class="indicator online">Online</div>
+                
+                <!-- Suporte -->
+                <div class="service-card rounded-2xl p-6 cursor-pointer magnetic col-span-1 sm:col-span-2 lg:col-span-4" data-service="suporte">
+                    <div class="click-indicator"></div>
+                    <div class="text-4xl mb-4"><i class="ph ph-headset text-red-400"></i></div>
+                    <h4 class="text-lg font-semibold mb-2">Suporte</h4>
+                    <div class="service-details" data-service-type="suporte">
+                        <div class="modal-service-grid">
+                            <div class="modal-service-item">
+                                <i class="ph ph-wrench"></i>
+                                <h4>Manutenção de Sites</h4>
+                                <p>Cuidados contínuos para manter seu site funcionando</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-shield-check"></i>
+                                <h4>Atualizações de Segurança</h4>
+                                <p>Proteção constante contra vulnerabilidades</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-cloud-arrow-up"></i>
+                                <h4>Backup & Recovery</h4>
+                                <p>Seus dados sempre seguros e recuperáveis</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-clock"></i>
+                                <h4>Monitoramento 24/7</h4>
+                                <p>Vigilância constante da performance do seu site</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-handshake"></i>
+                                <h4>Consultoria Técnica</h4>
+                                <p>Orientação especializada para suas necessidades</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-book-open"></i>
+                                <h4>Treinamentos</h4>
+                                <p>Capacitação para você gerenciar seus sistemas</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-cloud"></i>
+                                <h4>Hospedagem Cloud</h4>
+                                <p>Infraestrutura moderna e escalável na nuvem</p>
+                            </div>
+                            <div class="modal-service-item">
+                                <i class="ph ph-gauge"></i>
+                                <h4>Otimização de Performance</h4>
+                                <p>Acelere seu site para melhor experiência</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
 
-        <section class="contact-section py-5" id="contato">
-            <div class="container">
-                <h1 class="text-center text-white mb-4">Contato <i class="fas fa-question-circle question-icon"
-                        help="Aqui são algumas das nossas formas de contato, pra você tirar duvidas sobre seu projeto personalizado🧑‍💻"
-                        onclick="help_toast(this)"></i></h1>
-                <div class="row justify-content-center">
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope fa-4x mb-4"></i>
-                                <h5 class="card-title">Email</h5>
-                                <p class="card-text">Entre em contato através do email:</p>
-                                <a href="mailto:devhenrike+limawebvision@gmail.com" class="btn btn-primary">Enviar Email</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="fab fa-instagram fa-4x mb-4"></i>
-                                <h5 class="card-title">Instagram</h5>
-                                <p class="card-text">Conecte-se comigo no Instagram:</p>
-                                <a href="https://www.instagram.com/lima_webvision/" class="btn btn-primary">Instagram</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="fab fa-linkedin fa-4x mb-4"></i>
-                                <h5 class="card-title">LinkedIn</h5>
-                                <p class="card-text">Conecte-se comigo no LinkedIn:</p>
-                                <a href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/"
-                                    class="btn btn-primary">LinkedIn</a>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Contato -->
+        <div class="space-y-8 lg:space-y-10">
+            <h3 class="text-2xl font-bold text-gray-200 mb-8 lg:mb-10">Vamos Conversar?</h3>
+            
+            <!-- WhatsApp Principal -->
+            <a href="http://wa.me/+5551981574181" target="_blank"
+               class="whatsapp-btn inline-flex items-center justify-center space-x-4 rounded-2xl px-6 py-4 lg:px-8 lg:py-6 text-white font-semibold text-base lg:text-lg magnetic shadow-2xl max-w-md mx-auto w-full">
+                <svg class="w-6 h-6 lg:w-8 lg:h-8 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+                </svg>
+                <div class="text-left flex-grow min-w-0">
+                    <div class="text-sm lg:text-lg font-bold truncate">Fale Conosco no WhatsApp</div>
+                    <div class="text-xs lg:text-sm opacity-90">Resposta rápida garantida</div>
                 </div>
+            </a>
+            
+            <!-- Email Secundário -->
+            <div class="flex justify-center">
+                <a href="mailto:limawebvision@gmail.com" 
+                   class="inline-flex items-center space-x-3 bg-white/10 hover:bg-white/20 transition-all duration-300 rounded-xl px-4 py-2 lg:px-6 lg:py-3 backdrop-blur-sm border border-white/20 max-w-xs w-full justify-center">
+                    <svg class="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <span class="text-xs lg:text-sm truncate">limawebvision@gmail.com</span>
+                </a>
             </div>
-        </section>
 
-        <section>
-            <h1 class="text-center text-white mb-4">Projetos <i class="fas fa-question-circle question-icon"
-                    help="Aqui é onde ficam alguns de meus projetos recentes, que tal colocar o seu aqui também😉"
-                    onclick="help_toast(this)"></i></h1>
-                    <p class="text-white text-center">Clique na imagem para expandi-la</p>
-            <div class="container mt-5" id="projetos">
-                <div class="slider">
-                    <div class="slide">
-                        <h2 class="title text-white text-center">Landing Page (advocacia)</h2>
-                        <div class="thumbnails">
-                            <div class="thumbnail"><img class="active" src="./assets/projetos/advocacia/1.png"
-                                    data-main="./assets/projetos/advocacia/1.png" alt="Thumbnail 1"></div>
-                            <div class="thumbnail"><img src="./assets/projetos/advocacia/2.png"
-                                    data-main="./assets/projetos/advocacia/2.png" alt="Thumbnail 2"></div>
-                            <div class="thumbnail"><img src="./assets/projetos/advocacia/3.png"
-                                    data-main="./assets/projetos/advocacia/3.png" alt="Thumbnail 3"></div>
-                        </div>
-                    </div>
-
-                    <div class="slide">
-                        <h2 class="title text-white text-center">LimaFlix</h2>
-
-                        <div class="thumbnails">
-                            <div class="thumbnail"><img class="active" src="./assets/projetos/limaflix/1.png"
-                                    data-main="./assets/projetos/limaflix/1.png" alt="Thumbnail 1"></div>
-                            <div class="thumbnail"><img src="./assets/projetos/limaflix/2.png"
-                                    data-main="./assets/projetos/limaflix/2.png" alt="Thumbnail 2"></div>
-                            <div class="thumbnail"><img src="./assets/projetos/limaflix/3.png"
-                                    data-main="./assets/projetos/limaflix/3.png" alt="Thumbnail 3"></div>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Mensagem de rodapé -->
+            <div class="text-center mt-12 lg:mt-16 pt-8 lg:pt-10 border-t border-white/10">
+                <p class="text-gray-400 text-lg mb-4">
+                    ✨ <span class="font-semibold text-white">Transformando visões em realidade digital</span> ✨
+                </p>
+                <p class="text-sm text-gray-500">
+                    Site totalmente renovado <span class="text-green-400 font-medium">em breve</span>
+                </p>
             </div>
-        </section>
-
-        <section>
-            <div class="container py-5">
-                <h1 class="text-center text-white mb-4">FAQ <i class="fas fa-question-circle question-icon"
-                        help="FAQ, são perguntas comuns que recebo, então já deixo elas respondidas aqui, caso ainda tenha dúvidas é só entrar em contato, estamos lhe esperando"
-                        onclick="help_toast(this)"></i></h1>
-                <div class="accordion" id="faqAccordion">
-                    <!-- Contato -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                1. Como posso entrar em contato com você?
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Você pode entrar em contato enviando um e-mail para <a
-                                    href="mailto:devhenrike@gmail.com" rel="noopener noreferrer"
-                                    target="_blank">devhenrike@gmail.com</a> ou conectando-se através do LinkedIn em <a
-                                    href="https://www.linkedin.com/in/kau%C3%A3-lima-ba80912bb/" rel="noopener noreferrer"
-                                    target="_blank">Kauã Lima</a>. Vamos agendar uma conversa para entender melhor suas necessidades e criar algo incrível juntos!
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Valores -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                2. Qual é o custo para desenvolver uma landing page?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                O custo de uma landing page depende de vários fatores, como a complexidade e as funcionalidades desejadas. Para oferecer uma solução personalizada que atenda exatamente às suas expectativas, o ideal é agendarmos uma reunião. Assim, poderei fornecer um orçamento detalhado e ajustado às suas necessidades.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Processo de Desenvolvimento -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                3. Como é o processo de desenvolvimento de uma landing page?
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                O processo de desenvolvimento é uma jornada colaborativa para garantir que sua landing page seja perfeita. Geralmente, segue estas etapas:
-                                <ol>
-                                    <li><strong>Consulta Inicial:</strong> Discutimos suas necessidades e objetivos.</li>
-                                    <li><strong>Planejamento:</strong> Definimos o escopo do projeto e criamos um cronograma.</li>
-                                    <li><strong>Design:</strong> Criação de um design visual atrativo e funcional.</li>
-                                    <li><strong>Desenvolvimento:</strong> Codificação da landing page conforme o design aprovado.</li>
-                                    <li><strong>Revisões:</strong> Ajustes baseados no seu feedback.</li>
-                                    <li><strong>Lançamento:</strong> Publicação da landing page e entrega final.</li>
-                                </ol>
-                                Vamos agendar uma reunião para que eu possa entender melhor suas ideias e transformar sua visão em realidade.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Domínio e Hospedagem -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                4. Você fornece domínio e hospedagem?
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Sim, posso ajudá-lo na configuração de domínio e hospedagem para sua landing page. Embora esses serviços sejam cobrados à parte, estarei ao seu lado durante todo o processo para garantir que tudo funcione perfeitamente. Vamos marcar uma conversa para definir os detalhes e deixar sua página pronta para impressionar!
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tempo de Desenvolvimento -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                5. Em quanto tempo minha landing page ficará pronta?
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                O desenvolvimento de uma landing page geralmente leva até uma semana. Vamos agendar uma reunião para discutir suas necessidades e garantir que sua página esteja pronta no prazo desejado, superando suas expectativas.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+    </div>
+    
+    <!-- Modal Container -->
+    <div class="modal-container" id="modalContainer">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-card" id="modalCard">
+            <div class="click-indicator" id="modalCloseBtn"></div>
+            <div id="modalContent">
+                <!-- Conteúdo será inserido dinamicamente aqui -->
             </div>
-        </section>
+        </div>
+    </div>
 
-
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
-            integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"
-            integrity="sha512-ZHzbWDQKpcZxIT9l5KhcnwQTidZFzwK/c7gpUUsFvGjEsxPusdUCyFxjjpc7e/Wj7vLhfMujNx7COwOmzbn+2w=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
-            integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.0/sweetalert2.min.js"
-            integrity="sha512-Wi5Ms24b10EBwWI9JxF03xaAXdwg9nF51qFUDND/Vhibyqbelri3QqLL+cXCgNYGEgokr+GA2zaoYaypaSDHLg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.panzoom/3.2.3/jquery.panzoom.min.js"></script>
-
-        <script src="script.js">
-        </script>
+    <script>
+        // Canvas background high-tech
+        function initCanvas() {
+            const canvas = document.getElementById('backgroundCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Elementos do background high-tech
+            const particles = [];
+            const nodes = [];
+            const gridLines = [];
+            const scanLines = [];
+            
+            const particleCount = 60;
+            const nodeCount = 12;
+            const time = { value: 0 };
+            
+            // Partículas flutuantes
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.opacity = Math.random() * 0.3 + 0.1;
+                    this.hue = Math.random() * 40 + 200;
+                    this.pulse = Math.random() * Math.PI * 2;
+                }
+                
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                    
+                    this.pulse += 0.02;
+                    this.opacity = (Math.sin(this.pulse) * 0.1 + 0.2) * 0.7;
+                }
+                
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    ctx.fillStyle = `hsl(${this.hue}, 60%, 60%)`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+            
+            // Nós conectados (neural network style)
+            class Node {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.2;
+                    this.vy = (Math.random() - 0.5) * 0.2;
+                    this.size = Math.random() * 3 + 2;
+                    this.connections = [];
+                    this.pulse = Math.random() * Math.PI * 2;
+                }
+                
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                    
+                    this.pulse += 0.03;
+                }
+                
+                draw() {
+                    const pulseSize = Math.sin(this.pulse) * 1 + this.size;
+                    
+                    ctx.save();
+                    ctx.globalAlpha = 0.4;
+                    
+                    // Círculo externo pulsante
+                    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, pulseSize * 2);
+                    gradient.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
+                    gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, pulseSize * 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Núcleo
+                    ctx.globalAlpha = 0.8;
+                    ctx.fillStyle = '#3b82f6';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, pulseSize, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+            
+            // Grid sutil de fundo
+            function drawGrid() {
+                const gridSize = 80;
+                const offsetX = (time.value * 0.5) % gridSize;
+                const offsetY = (time.value * 0.3) % gridSize;
+                
+                ctx.save();
+                ctx.globalAlpha = 0.03;
+                ctx.strokeStyle = '#3b82f6';
+                ctx.lineWidth = 1;
+                
+                // Linhas verticais
+                for (let x = -offsetX; x <= canvas.width + gridSize; x += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
+                }
+                
+                // Linhas horizontais
+                for (let y = -offsetY; y <= canvas.height + gridSize; y += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+            
+            // Scan lines ocasionais
+            class ScanLine {
+                constructor() {
+                    this.y = Math.random() * canvas.height;
+                    this.speed = Math.random() * 2 + 1;
+                    this.opacity = Math.random() * 0.1 + 0.05;
+                    this.height = Math.random() * 3 + 1;
+                }
+                
+                update() {
+                    this.y += this.speed;
+                    if (this.y > canvas.height + 20) {
+                        this.y = -20;
+                        this.opacity = Math.random() * 0.1 + 0.05;
+                    }
+                }
+                
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    const gradient = ctx.createLinearGradient(0, this.y, 0, this.y + this.height);
+                    gradient.addColorStop(0, 'rgba(139, 92, 246, 0)');
+                    gradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.3)');
+                    gradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, this.y, canvas.width, this.height);
+                    ctx.restore();
+                }
+            }
+            
+            // Inicializar elementos
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+            
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push(new Node());
+            }
+            
+            for (let i = 0; i < 3; i++) {
+                scanLines.push(new ScanLine());
+            }
+            
+            // Conexões entre nós
+            function drawConnections() {
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 200) {
+                            const opacity = (200 - distance) / 200 * 0.15;
+                            const pulse = Math.sin(time.value * 0.02 + distance * 0.01) * 0.05 + opacity;
+                            
+                            ctx.save();
+                            ctx.globalAlpha = pulse;
+                            ctx.strokeStyle = '#8b5cf6';
+                            ctx.lineWidth = 1;
+                            ctx.setLineDash([5, 10]);
+                            ctx.lineDashOffset = time.value * 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                            ctx.restore();
+                        }
+                    }
+                }
+            }
+            
+            // Código binário flutuante
+            function drawBinaryCode() {
+                if (Math.random() > 0.98) {
+                    const x = Math.random() * canvas.width;
+                    const y = canvas.height + 50;
+                    const binary = Math.random() > 0.5 ? '1' : '0';
+                    
+                    ctx.save();
+                    ctx.globalAlpha = 0.1;
+                    ctx.fillStyle = '#22d3ee';
+                    ctx.font = '12px monospace';
+                    ctx.fillText(binary, x, y);
+                    ctx.restore();
+                }
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                time.value += 0.5;
+                
+                // Desenhar grid de fundo
+                drawGrid();
+                
+                // Scan lines
+                scanLines.forEach(line => {
+                    line.update();
+                    line.draw();
+                });
+                
+                // Partículas
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                
+                // Nós e conexões
+                drawConnections();
+                nodes.forEach(node => {
+                    node.update();
+                    node.draw();
+                });
+                
+                // Código binário ocasional
+                drawBinaryCode();
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Interatividade dos cards de serviço
+        function initServiceCards() {
+            const cards = document.querySelectorAll('.service-card');
+            const modalContainer = document.getElementById('modalContainer');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            const modalCard = document.getElementById('modalCard');
+            const modalContent = document.getElementById('modalContent');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            let expandedCard = null;
+            
+            function closeModal() {
+                if (expandedCard) {
+                    expandedCard.classList.remove('expanded');
+                    modalContainer.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    expandedCard = null;
+                }
+            }
+            
+            function openModal(card) {
+                const serviceType = card.dataset.service;
+                const title = card.querySelector('h4').textContent;
+                const icon = card.querySelector('i').className;
+                const details = card.querySelector('.service-details');
+                
+                // Criar conteúdo do modal customizado
+                modalContent.innerHTML = `
+                    <div class="text-center">
+                        <div class="modal-service-icon">
+                            <i class="${icon}"></i>
+                        </div>
+                        <h2 class="modal-service-title">${title}</h2>
+                        <p class="text-gray-300 text-lg mb-8">Soluções completas e personalizadas para impulsionar seu negócio</p>
+                        <div class="modal-service-content">
+                            ${details.innerHTML}
+                        </div>
+                    </div>
+                `;
+                
+                // Mostrar modal
+                card.classList.add('expanded');
+                modalContainer.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                expandedCard = card;
+                
+                // Animar itens do modal com delay
+                setTimeout(() => {
+                    const items = modalContent.querySelectorAll('.modal-service-item');
+                    items.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                            item.style.transition = 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+                            
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 50);
+                        }, index * 100);
+                    });
+                }, 100);
+            }
+            
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (expandedCard === this) {
+                        closeModal();
+                        return;
+                    }
+                    
+                    // Fechar card anterior se existir
+                    if (expandedCard) {
+                        closeModal();
+                    }
+                    
+                    // Abrir novo modal
+                    openModal(this);
+                    
+                    // Animação do indicador
+                    const indicator = this.querySelector('.click-indicator');
+                    indicator.style.transform = 'scale(1.3)';
+                    setTimeout(() => {
+                        indicator.style.transform = 'scale(1)';
+                    }, 200);
+                });
+                
+                // Efeito magnético no hover
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('expanded')) {
+                        const icon = this.querySelector('.text-4xl');
+                        icon.style.transform = 'scale(1.1) rotate(3deg)';
+                        
+                        const indicator = this.querySelector('.click-indicator');
+                        indicator.style.transform = 'scale(1.1) rotate(90deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('expanded')) {
+                        const icon = this.querySelector('.text-4xl');
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                        
+                        const indicator = this.querySelector('.click-indicator');
+                        indicator.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+            
+            // Fechar modal ao clicar no backdrop
+            modalBackdrop.addEventListener('click', closeModal);
+            
+            // Fechar modal ao clicar no botão X
+            modalCloseBtn.addEventListener('click', closeModal);
+            
+            // Fechar modal com ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        }
+        
+        // Efeito de clique ripple
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+        
+        // CSS para animação ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Inicialização
+        window.addEventListener('load', function() {
+            initCanvas();
+            initServiceCards();
+            
+            // Adiciona efeito ripple ao botão WhatsApp
+            const whatsappBtn = document.querySelector('.whatsapp-btn');
+            if (whatsappBtn) {
+                whatsappBtn.style.position = 'relative';
+                whatsappBtn.style.overflow = 'hidden';
+                whatsappBtn.addEventListener('click', createRipple);
+            }
+        });
+        
+        // Parallax sutil no scroll
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.floating');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.1}px) rotate(${scrolled * 0.02}deg)`;
+            }
+        });
+    </script>
 </body>
-
 </html>
