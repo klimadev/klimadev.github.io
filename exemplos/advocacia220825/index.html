@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonstração - Escritório de Advocacia</title>
+  <style>
+    /* Reset e Configurações Globais */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #f5f5f4; /* bg-stone-50 */
+      overflow-x: hidden;
+    }
+
+    /* Animações Keyframes */
+    @keyframes pulse {
+      50% { opacity: 0.5; }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(-15%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+      50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+    }
+
+    /* Container Principal */
+    .hero-container {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Fundo Animado */
+    .animated-background {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .animated-background .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to bottom right, #f5f5f4, #fafafa, #f3f4f6);
+    }
+    .animated-background .particle {
+      position: absolute;
+      width: 0.25rem;
+      height: 0.25rem;
+      background-color: #cbd5e1; /* bg-slate-300 */
+      border-radius: 9999px;
+      opacity: 0.2;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .mouse-follower {
+      position: absolute;
+      width: 24rem; /* w-96 */
+      height: 24rem; /* h-96 */
+      background-image: radial-gradient(circle, rgba(203, 213, 225, 0.15), transparent);
+      border-radius: 9999px;
+      filter: blur(72px);
+      transition: all 700ms ease-out;
+      pointer-events: none;
+    }
+    .light-sweep {
+      position: absolute;
+      width: 20rem; /* w-80 */
+      height: 20rem; /* h-80 */
+      background-image: conic-gradient(from 180deg at 50% 50%, transparent, rgba(203, 213, 225, 0.1), transparent);
+      border-radius: 9999px;
+      filter: blur(48px);
+      animation: spin 8s linear infinite;
+      pointer-events: none;
+    }
+    .geo-patterns {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+    }
+    .geo-patterns .geo-1 {
+      position: absolute;
+      top: 5rem; left: 5rem;
+      width: 8rem; height: 8rem;
+      border: 1px solid #cbd5e1;
+      transform: rotate(45deg);
+      animation: spin 20s linear infinite;
+    }
+    .geo-patterns .geo-2 {
+      position: absolute;
+      bottom: 8rem; right: 8rem;
+      width: 6rem; height: 6rem;
+      border: 1px solid #d1d5db;
+      transform: rotate(12deg);
+      animation: bounce 3s infinite;
+    }
+    .geo-patterns .geo-3 {
+      position: absolute;
+      top: 50%; left: 2.5rem;
+      width: 4rem; height: 4rem;
+      border: 1px solid #94a3b8;
+      border-radius: 9999px;
+      animation: pulse 4s infinite;
+    }
+    
+    /* Conteúdo Principal */
+    .main-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3rem 2rem;
+    }
+    @media (min-width: 1024px) {
+      header { padding: 3rem 4rem; }
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 1000ms;
+      opacity: 0;
+      transform: translateX(-2.5rem);
+    }
+    body.visible .logo-container { opacity: 1; transform: translateX(0); }
+    .logo-container:hover { transform: scale(1.05); }
+    .logo-icon-wrapper {
+      position: relative;
+      width: 3rem; height: 3rem;
+      background-image: linear-gradient(to bottom right, #334155, #1e293b);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: all 500ms;
+    }
+    .logo-container:hover .logo-icon-wrapper { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+    .logo-icon-wrapper .shine {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 700ms ease-out;
+    }
+    .logo-container:hover .shine { transform: translateX(100%); }
+    .logo-icon-wrapper svg {
+      width: 1.75rem; height: 1.75rem; color: white; position: relative; z-index: 10;
+      transition: transform 300ms;
+    }
+    .logo-container:hover .logo-icon-wrapper svg { transform: scale(1.1); }
+    .logo-text {
+      font-size: 1.5rem; font-weight: 700; color: #1e293b;
+      transition: color 300ms;
+    }
+    .logo-container:hover .logo-text { color: #475569; }
+    
+    /* Navegação */
+    nav {
+      display: none;
+      gap: 2rem;
+      transition: all 1000ms 200ms;
+      opacity: 0;
+      transform: translateX(2.5rem);
+    }
+    @media (min-width: 768px) { nav { display: flex; } }
+    body.visible nav { opacity: 1; transform: translateX(0); }
+    nav a {
+      position: relative;
+      color: #475569;
+      text-decoration: none;
+      transition: all 300ms;
+    }
+    nav a:hover { color: #1e293b; }
+    nav a .underline {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1.5px;
+      background-image: linear-gradient(to right, #475569, #1e293b);
+      transition: width 500ms ease-out;
+    }
+    nav a:hover .underline { width: 100%; }
+    
+    /* Conteúdo Principal */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    
+    .hero-title-wrapper {
+      transition: all 1000ms 300ms;
+      opacity: 0; transform: translateY(2.5rem);
+    }
+    body.visible .hero-title-wrapper { opacity: 1; transform: translateY(0); }
+    
+    h1 {
+      font-size: 3rem; /* 5xl */
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    @media (min-width: 768px) { h1 { font-size: 4.5rem; } }
+    h1 .gradient-text {
+      display: block;
+      background-image: linear-gradient(to right, #475569, #334155);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .hero-paragraph {
+      font-size: 1.25rem;
+      color: #475569;
+      margin-bottom: 5rem;
+      max-width: 56rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      transition: all 1000ms 500ms;
+      opacity: 0; transform: translateY(2.5rem);
+    }
+    @media (min-width: 768px) { .hero-paragraph { font-size: 1.5rem; } }
+    body.visible .hero-paragraph { opacity: 1; transform: translateY(0); }
+    
+    /* Botões CTA */
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 6rem;
+      transition: all 1000ms 700ms;
+      opacity: 0; transform: translateY(2.5rem);
+    }
+    @media (min-width: 640px) { .cta-buttons { flex-direction: row; } }
+    body.visible .cta-buttons { opacity: 1; transform: translateY(0); }
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      font-size: 1.125rem;
+      transform: scale(1);
+      transition: all 500ms;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover {
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      transform: scale(1.05);
+    }
+    
+    .btn-primary {
+      background-image: linear-gradient(to right, #1e293b, #334155);
+      color: white;
+    }
+    .btn-primary .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, #334155, #475569);
+      transform: translateY(100%);
+      transition: transform 500ms ease-out;
+    }
+    .btn-primary:hover .slide-bg { transform: translateY(0); }
+    .btn-primary .shine {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 700ms ease-out;
+    }
+    .btn-primary:hover .shine { transform: translateX(100%); }
+    .btn span, .btn svg { position: relative; z-index: 10; transition: all 300ms; }
+    .btn-primary svg { margin-left: 0.5rem; }
+    .btn-primary:hover svg { transform: translateX(0.5rem); }
+
+    .btn-secondary {
+      border: 2px solid #475569;
+      color: #334155;
+      background-color: transparent;
+    }
+    .btn-secondary .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, #334155, #1e293b);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 500ms ease-out;
+    }
+    .btn-secondary:hover .slide-bg { transform: scaleX(1); }
+    .btn-secondary:hover span, .btn-secondary:hover svg { color: white; }
+    .btn-secondary svg { margin-right: 0.5rem; }
+    .btn-secondary:hover svg { transform: rotate(12deg); }
+
+    /* Seção de Serviços */
+    .services-section { margin-bottom: 5rem; }
+    .services-section h2 {
+      font-size: 2.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem;
+      transition: all 1000ms 800ms;
+      opacity: 0; transform: translateY(2.5rem);
+    }
+    @media (min-width: 768px) { .services-section h2 { font-size: 2.5rem; } }
+    body.visible .services-section h2 { opacity: 1; transform: translateY(0); }
+
+    .divider {
+      width: 6rem; height: 0.25rem;
+      background-image: linear-gradient(to right, #475569, #1e293b);
+      margin: 0 auto 4rem auto;
+    }
+    .services-bar-container {
+      display: none; /* Oculto por padrão, visível em telas maiores */
+      position: relative;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) { .services-bar-container { display: block; } }
+
+    .services-bar-bg {
+      position: absolute;
+      inset: 0;
+      height: 6rem;
+      background-image: linear-gradient(to right, #e7e5e4, white, #e7e5e4);
+      border-radius: 9999px;
+    }
+    .services-bar-items {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 6rem;
+      padding: 0 2rem;
+    }
+    .service-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 500ms;
+      opacity: 0; transform: translateY(2.5rem);
+    }
+    .service-item:hover { transform: scale(1.1); }
+    body.visible .service-item { opacity: 1; transform: translateY(0); }
+    
+    .service-icon-wrapper {
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .service-icon-bg {
+      width: 4rem; height: 4rem;
+      background-image: linear-gradient(to bottom right, white, #f3f4f6);
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 500ms;
+    }
+    .service-item:hover .service-icon-bg {
+      box-shadow: 0 20px 25px -5px rgba(203,213,225,0.5), 0 10px 10px -5px rgba(203,213,225,0.25);
+      transform: translateY(-0.5rem);
+    }
+    .service-icon-bg .overlay {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to bottom right, rgba(71,85,105,0.1), rgba(30,41,59,0.1));
+      border-radius: 1rem;
+      opacity: 0;
+      transition: opacity 300ms;
+    }
+    .service-item:hover .overlay { opacity: 1; }
+    .service-icon-bg svg {
+      width: 2rem; height: 2rem;
+      color: #475569;
+      transition: all 300ms;
+      position: relative; z-index: 10;
+    }
+    .service-item:hover .service-icon-bg svg { color: #1e293b; transform: scale(1.1); }
+
+    .service-title h3 {
+      color: #1e293b; font-weight: 700;
+      font-size: 0.875rem; /* text-sm */
+      margin-bottom: 0.25rem;
+      transition: color 300ms;
+      max-width: 6rem;
+    }
+    @media (min-width: 1024px) { .service-title h3 { font-size: 1rem; } }
+    .service-item:hover .service-title h3 { color: #0f172a; }
+
+    .service-desc-tooltip {
+      position: absolute;
+      top: 5rem; left: 50%;
+      transform: translateX(-50%);
+      background-color: #1e293b;
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: all 300ms;
+      transform: translate(-50%, 0.5rem);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .service-item:hover .service-desc-tooltip { opacity: 1; transform: translate(-50%, 0); }
+    .service-desc-tooltip .arrow {
+      position: absolute;
+      top: -0.25rem; left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 0.5rem; height: 0.5rem;
+      background-color: #1e293b;
+    }
+    
+    /* Fallback de Serviços para Mobile */
+    .services-mobile-grid {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) { .services-mobile-grid { display: none; } }
+    .service-mobile-card {
+      background-color: rgba(255,255,255,0.6);
+      backdrop-filter: blur(4px);
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      transition: all 300ms;
+    }
+    .service-mobile-card:hover { background-color: rgba(255,255,255,0.8); }
+    .service-mobile-card .card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .service-mobile-card .icon-wrapper {
+      width: 2.5rem; height: 2.5rem;
+      background-image: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-mobile-card svg { width: 1.25rem; height: 1.25rem; color: #475569; }
+    .service-mobile-card h3 { color: #1e293b; font-weight: 700; font-size: 0.875rem; }
+    .service-mobile-card p { color: #475569; font-size: 0.75rem; margin-left: 3.25rem; margin-top:0; }
+
+    /* Separador de Seção */
+    .section-separator-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+    .section-separator {
+      width: 100%;
+      max-width: 56rem;
+      position: relative;
+    }
+    .section-separator .line {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+    }
+    .section-separator .line div { width: 100%; border-top: 1px solid #e5e7eb; }
+    .section-separator .text {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      font-size: 0.875rem;
+    }
+    .section-separator .text span {
+      background-color: #f5f5f4;
+      padding: 0.5rem 1.5rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    /* Estatísticas Inferiores */
+    .bottom-stats {
+      position: relative;
+      padding: 5rem 2rem;
+      backdrop-filter: blur(4px);
+      transition: all 1000ms 1000ms;
+      opacity: 0; transform: translateY(2.5rem);
+    }
+    body.visible .bottom-stats { opacity: 1; transform: translateY(0); }
+    .bottom-stats .top-separator {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 64rem;
+    }
+    .bottom-stats .top-separator .line div { border-color: rgba(229, 231, 235, 0.6); }
+    .bottom-stats .top-separator .text span { padding: 0.75rem 2rem; letter-spacing: 0.05em; }
+    
+    .stats-grid {
+      max-width: 64rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .stat-item {
+      transition: transform 300ms;
+    }
+    .stat-item:hover { transform: scale(1.05); }
+    .stat-number {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 0.5rem;
+      transition: color 300ms;
+    }
+    .stat-item:hover .stat-number { color: #1e293b; }
+    .stat-label {
+      color: #475569;
+      transition: color 300ms;
+    }
+    .stat-item:hover .stat-label { color: #334155; }
+
+    .bottom-separator-container {
+      margin-top: 4rem;
+      display: flex;
+      justify-content: center;
+    }
+    .bottom-separator {
+      width: 100%;
+      max-width: 48rem;
+    }
+    .bottom-separator .line div { border-color: rgba(229, 231, 235, 0.4); }
+    .bottom-separator .text span { color: #9ca3af; font-weight: 300; font-style: italic; }
+
+    /* Botão Flutuante do WhatsApp */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 1.5rem; right: 1.5rem;
+      z-index: 40;
+    }
+    .whatsapp-fab button {
+      position: relative;
+      background-color: #22c55e;
+      color: white;
+      padding: 1rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      border: none;
+      cursor: pointer;
+      transition: all 300ms;
+    }
+    .whatsapp-fab button:hover {
+      background-color: #16a34a;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      transform: scale(1.1);
+    }
+    .whatsapp-fab svg {
+      width: 1.5rem; height: 1.5rem;
+      transition: transform 300ms;
+    }
+    .whatsapp-fab button:hover svg { transform: scale(1.1); }
+    .whatsapp-tooltip {
+      position: absolute;
+      top: -3rem; left: -2rem;
+      background-color: #1e293b;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: all 300ms;
+      transform: translateY(0.5rem);
+    }
+    .whatsapp-fab button:hover .whatsapp-tooltip { opacity: 1; transform: translateY(0); }
+    .whatsapp-tooltip .arrow {
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #1e293b;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="hero-container" class="hero-container">
+    <div class="animated-background">
+      <div class="bg-gradient"></div>
+      
+      <!-- Partículas animadas -->
+      <script>
+        const bg = document.querySelector('.animated-background');
+        for (let i = 0; i < 15; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+          particle.style.animationDelay = `${Math.random() * 3}s`;
+          particle.style.animationDuration = `${2 + Math.random() * 2}s`;
+          bg.appendChild(particle);
+        }
+      </script>
+      
+      <!-- Efeito de movimento do mouse -->
+      <div id="mouse-follower" class="mouse-follower"></div>
+      <div id="light-sweep" class="light-sweep"></div>
+      
+      <!-- Padrões geométricos -->
+      <div class="geo-patterns">
+        <div class="geo-1"></div>
+        <div class="geo-2"></div>
+        <div class="geo-3"></div>
+      </div>
+    </div>
+    
+    <div class="main-content">
+      <!-- Header -->
+      <header>
+        <div class="logo-container">
+          <div class="logo-icon-wrapper">
+            <div class="shine"></div>
+            <!-- Scale Icon SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="8"></line><path d="M4 14.5a4.5 4.5 0 0 0 4.5 4.5h7a4.5 4.5 0 0 0 4.5-4.5v-2a4.5 4.5 0 0 0-4.5-4.5h-7a4.5 4.5 0 0 0-4.5 4.5v2Z"></path><path d="M9 12V6a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v6"></path><path d="M2 14.5a2.5 2.5 0 0 0 2.5 2.5"></path><path d="M22 14.5a2.5 2.5 0 0 1-2.5 2.5"></path></svg>
+          </div>
+          <span class="logo-text">Demonstração</span>
+        </div>
+        
+        <nav>
+          <a href="#">
+            <span class="relative z-10">Áreas de Atuação</span>
+            <div class="underline"></div>
+          </a>
+          <a href="#">
+            <span class="relative z-10">Sobre Nós</span>
+            <div class="underline"></div>
+          </a>
+          <a href="#">
+            <span class="relative z-10">Casos de Sucesso</span>
+            <div class="underline"></div>
+          </a>
+          <a href="#">
+            <span class="relative z-10">Contato</span>
+            <div class="underline"></div>
+          </a>
+        </nav>
+      </header>
+
+      <!-- Main Content -->
+      <main>
+        <div style="max-width: 80rem; margin: 0 auto;">
+          <div class="hero-title-wrapper">
+            <h1>
+              Escritório de Advocacia
+              <span class="gradient-text">
+                Demonstração
+              </span>
+            </h1>
+          </div>
+
+          <p class="hero-paragraph">
+            Advocacia especializada em todas as áreas do Direito. 
+            Nossa equipe oferece consultoria jurídica completa e representação legal eficiente 
+            <span style="font-weight: 600; color: #1e293b;">para pessoas físicas e empresas.</span>
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="cta-buttons">
+            <button class="btn btn-primary">
+              <div class="slide-bg"></div>
+              <div class="shine"></div>
+              <span>Agendar Consulta</span>
+              <!-- ChevronRight Icon SVG -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+            </button>
+            <button class="btn btn-secondary">
+              <div class="slide-bg"></div>
+              <!-- Star Icon SVG -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>Nossos Resultados</span>
+            </button>
+          </div>
+
+          <!-- Services Section -->
+          <div class="services-section">
+            <h2>Nossas Especialidades</h2>
+            <div class="divider"></div>
+            
+            <div class="services-bar-container">
+              <div class="services-bar-bg"></div>
+              <div class="services-bar-items" id="services-bar">
+                <!-- Serviços serão injetados aqui pelo JS -->
+              </div>
+            </div>
+            
+            <!-- Service Details - Mobile Fallback -->
+            <div class="services-mobile-grid" id="services-mobile">
+              <!-- Serviços mobile serão injetados aqui pelo JS -->
+            </div>
+          </div>
+          
+
+        </div>
+      </main>
+
+      <!-- Bottom Stats -->
+      <div class="bottom-stats">
+        <div class="section-separator top-separator">
+          <div class="line"><div></div></div>
+          <div class="text">
+            <span>Nossa Trajetória em Números</span>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">1.200+</div>
+            <div class="stat-label">Clientes Atendidos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Anos de Experiência</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24h</div>
+            <div class="stat-label">Resposta Garantida</div>
+          </div>
+        </div>
+        
+        <div class="bottom-separator-container">
+          <div class="section-separator bottom-separator">
+            <div class="line"><div></div></div>
+            <div class="text">
+              <span>Feito por LimaWebvision 21/08/25->22/08/2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-fab">
+      <button onclick="window.open('https://wa.me/+555181574181?text=Olá! Gostaria de agendar uma consulta jurídica.', '_blank')">
+        <!-- MessageCircle Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+        <div class="whatsapp-tooltip">
+          Fale Conosco
+          <div class="arrow"></div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Ativar animações de entrada
+      // Adiciona a classe 'visible' para disparar as transições CSS
+      setTimeout(() => {
+        document.body.classList.add('visible');
+      }, 100);
+
+      // 2. Efeito de movimento do mouse
+      const heroContainer = document.getElementById('hero-container');
+      const mouseFollower = document.getElementById('mouse-follower');
+      const lightSweep = document.getElementById('light-sweep');
+
+      heroContainer.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        // Otimização com requestAnimationFrame para performance
+        window.requestAnimationFrame(() => {
+          mouseFollower.style.left = `${clientX - 192}px`;
+          mouseFollower.style.top = `${clientY - 192}px`;
+          lightSweep.style.left = `${clientX - 160}px`;
+          lightSweep.style.top = `${clientY - 160}px`;
+        });
+      });
+
+      // 3. Injetar dinamicamente os serviços
+      const services = [
+        { icon: 'Heart', title: "Direito da Saúde", desc: "Planos de saúde e erro médico" },
+        { icon: 'Scale', title: "Direito Tributário", desc: "Impostos e questões fiscais" },
+        { icon: 'Briefcase', title: "Direito Bancário", desc: "Financiamentos e empréstimos" },
+        { icon: 'Users', title: "Direito de Família", desc: "Divórcio, pensão e guarda" },
+        { icon: 'Shield', title: "Direito Civil", desc: "Contratos e indenizações" }
+      ];
+
+      const icons = {
+        Heart: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>`,
+        Scale: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="8"></line><path d="M4 14.5a4.5 4.5 0 0 0 4.5 4.5h7a4.5 4.5 0 0 0 4.5-4.5v-2a4.5 4.5 0 0 0-4.5-4.5h-7a4.5 4.5 0 0 0-4.5 4.5v2Z"></path><path d="M9 12V6a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v6"></path><path d="M2 14.5a2.5 2.5 0 0 0 2.5 2.5"></path><path d="M22 14.5a2.5 2.5 0 0 1-2.5 2.5"></path></svg>`,
+        Briefcase: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`,
+        Users: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+        Shield: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
+      };
+
+      const servicesBar = document.getElementById('services-bar');
+      const servicesMobile = document.getElementById('services-mobile');
+
+      services.forEach((service, index) => {
+        // Renderiza a barra de serviços para desktop
+        const serviceItemHTML = `
+          <div class="service-item" style="transition-delay: ${900 + index * 100}ms">
+            <div class="service-icon-wrapper">
+              <div class="service-icon-bg">
+                <div class="overlay"></div>
+                ${icons[service.icon]}
+              </div>
+            </div>
+            <div class="service-title">
+              <h3>${service.title}</h3>
+              <div class="service-desc-tooltip">
+                ${service.desc}
+                <div class="arrow"></div>
+              </div>
+            </div>
+          </div>
+        `;
+        servicesBar.innerHTML += serviceItemHTML;
+
+        // Renderiza a lista de serviços para mobile
+        const serviceCardHTML = `
+          <div class="service-mobile-card">
+            <div class="card-header">
+              <div class="icon-wrapper">
+                ${icons[service.icon]}
+              </div>
+              <h3>${service.title}</h3>
+            </div>
+            <p>${service.desc}</p>
+          </div>
+        `;
+        servicesMobile.innerHTML += serviceCardHTML;
+      });
+    });
+  </script>
+
+</body>
+</html>
